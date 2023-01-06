@@ -1,6 +1,6 @@
 <?php 
-include 'includes/config.php';
-include 'includes/header.php';
+phpinfo();
+include_once 'includes/header.php';
 
 if($_POST['form'] == 'Y'){
     $email = $_POST['email'];
@@ -15,32 +15,32 @@ if($_POST['form'] == 'Y'){
         if(!$res) {
             $error = 'Email ou senha incorretos.';
         } else {
-            print "<script>location.href='./src/pages/home.php?id=".urlencode($res['id'])."'</script>";
+            print "<script>location.href='./pages/home.php?id=".urlencode($res['id'])."'</script>";
             exit;
         }
-    } 
+    }
 }
 ?>
 
-<section>
-    <div class="login">
-        <?php if($error) {?>
+<section class="main-login">
+    <?php if($error) {?>
             <div class="error">
-                <p><?php print $error; ?></p>
+                <h5><?php print $error; ?></h4>
             </div>
-        <?php }?>
+    <?php } ?>
+    <div class="login"> 
         <form method="POST">
             <input value="Y" name="form" hidden>
             <div>
                 <label>Email</label>
-                <input type="text" name="email">
+                <input type="text" name="email" placeholder="Digite seu email.">
             </div>
             <div>
                 <label>Senha</label>
-                <input type="password" name="senha">
+                <input type="password" name="senha" placeholder="Digite sua senha.">
             </div>
             <button type="submit">Entrar</button>
-        </form>
+        </form>     
     </div>
 </section>
 <?php 

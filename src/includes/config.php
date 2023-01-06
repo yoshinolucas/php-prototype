@@ -17,6 +17,7 @@ $dsn = "mysql:dbname=".$dbname.";host=".$host;
 
 try {
     $dbh = new PDO($dsn, $user, $pass);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
     exit;
@@ -26,12 +27,20 @@ function mysql_fetchAll($query, $values = Array(), $fetchtype = PDO::FETCH_ASSOC
     global $dbh;
     $stmt = $dbh->prepare($query);
     foreach($values as $k=>$v){
-        if(($k == ":iDisplayStart") OR ($k == ":iDisplayLength")){
+        if($k == ':limit' or $k == ':offset'){
             $stmt->bindValue($k, $v, PDO::PARAM_INT);
         } else {
-            $stmt->bindValue($k, $v);
-        }
+            $stmt->bindValue($k, $v); 
+        }         
     }
+    $run = $stmt->execute();
+	if ($run == false){
+		error_log(serialize($stmt->errorInfo()));
+		error_log(serialize($values));
+		error_log($query);
+	}
+	$result = $stmt->fetchAll($fetchtype);
+	return $result;
 }
 
 function mysql_numRows($query, $values = Array()){
