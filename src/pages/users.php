@@ -3,17 +3,18 @@ include_once '../includes/config.php';
 include_once '../includes/header.php'; 
 include_once '../includes/top.php';
 include_once '../includes/sidebar.php';
+protege();
 ?>
 <section>
     <div class="panel" id="panel">    
         <div class="panel-header">
             <h4 class="panel-title">Usuários</h4>
-            <a class="add" href="/pages/useredit.php?id=0"><i class="fa fa-add"></i></a>
+            <div>
+                <button class="remove" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
+                <a class="add" href="/pages/useredit.php?id=0"><i class="fa fa-add"></i></a>
+            </div>
         </div> 
         <div class="panel-body">
-            <div class="panel-actions">
-                <button class="remove" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
-            </div>
             <?php if($_GET['id'] == 1) { ?>
                 <div class="create-success">
                     <h5>Usuário criado com sucesso.</h5>
@@ -46,23 +47,26 @@ include_once '../includes/sidebar.php';
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Certeza que quer excluir os items selecionados?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Certeza que quer excluir os<span></span> itens selecionados?</h1>
                 <button type="buttons" class="remove-escrito">Excluir</button>
                 <button type="button" class="cancelar" data-bs-dismiss="modal">Cancelar</button>
             </div>
             </div>
         </div>
     </div>
+
 </section>
 <?php 
 include_once '../includes/footer.php';
 ?>
 <script>
     $(document).ready( function () {
-        var table = $('#usersTable').DataTable({       
+        var table = $('#usersTable').DataTable({     
+            responsive:true,
             processing: true,
             serverSide: true,
             ajax: {
@@ -102,17 +106,23 @@ include_once '../includes/footer.php';
             else {($('#usersTable tbody tr').removeClass('selected'))}
         })
 
-        $('.remove-escrito').on('click',function(){
+
+        function getSelecionados() {
             selecionados = [];
             $('.selected').each(function(){
                 var selecionado = $(this).children().eq(1);
                 selecionados.push(selecionado.text()); 
             })
+            return selecionados;
+        }
+
+        $('.remove-escrito').on('click',function(){
+            
             $.ajax({
                 url:'api/remover-user.php',
                 type: 'POST',
                 data: {
-                    ids: JSON.stringify(selecionados)
+                    ids: JSON.stringify(getSelecionados())
                 }
             }).done(function(res){
                 location.reload();

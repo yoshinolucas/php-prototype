@@ -1,4 +1,5 @@
 <?php 
+include_once 'includes/config.php';
 include_once 'includes/header.php';
 
 if($_POST['form'] == 'Y'){
@@ -14,11 +15,32 @@ if($_POST['form'] == 'Y'){
         if(!$res) {
             $error = 'Email ou senha incorretos.';
         } else {
+            $jwt = gerajwt($options);
+            geracookie("token", $jwt);
             print "<script>location.href='./pages/home.php?id=".urlencode($res['id'])."'</script>";
             exit;
         }
     }
 }
+
+if ($_GET['action'] == "logout"){
+	geracookie("token", "");
+}
+
+switch ($_GET['msg']){
+    case 2:
+      $error = "Sessão inválida ou expirada.";
+      break;
+    case 3:
+      $error = "Erro interno ao validar sessão.";
+      break;
+    case 4:
+      $error = "Erro na sessão.";
+      break;
+    case 5:
+      $error = "Sessão expirada.";
+      break;
+  }
 ?>
 
 <section class="main-login">
