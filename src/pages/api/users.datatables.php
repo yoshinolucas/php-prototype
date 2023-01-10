@@ -52,6 +52,7 @@ $data = array();
 
 foreach ($usersRecords as $row) {
    $data[] = array(
+      "select"=>"",
       "id"=>$row['id'],
       "name"=>$row['name'],
       "email"=>$row['email'],

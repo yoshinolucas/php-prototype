@@ -42,19 +42,19 @@ header {
     color: #fff;
 }
 
-form div label {
+.login form div label {
     margin-top: 12px;
     margin-bottom: 8px;
     font-weight: 600;
     display: block;
     color:rgb(121, 121, 121);
 }
-form div input {
+.login form div input {
     padding: 8px 24px;
     border: none;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
-form button {
+.login form button {
     margin-top: 12px;
     padding: 12px 16px;
     border:none;
@@ -186,21 +186,206 @@ form button {
 
 .panel-header {
     color: #444;
-    margin-bottom: 20px;
-    text-align: right;
     width: 100%;
+    margin: 4px;
+    height: 48px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgb(31, 163, 146)
 }
 
+.panel-body {
+    margin: 4px;
+}
+.panel-title {
+    color:rgb(31, 163, 146);
+    margin-bottom:0;
+}
 .add {
-    font-size: 28px;
-    padding: 2px 18px;
+    padding: 9px 16px;
+    font-size: 20px;
     border:none;
     border-radius: 12px;
-    color:rgb(21, 68, 37);
+    background: rgb(227, 236, 235);
+    color:rgb(31, 163, 146);
+}
+
+.add i {
+    color:rgb(31, 163, 146);
 }
 
 .add:hover {
-    background: rgb(114, 114, 114);
-    color: #fff;
+    background: rgb(30, 124, 112);
+    color: #fff
 }
 
+.add:hover i{
+    color: #fff
+}
+
+.voltar {
+    font-size: 20px;
+    color:rgb(31, 163, 146);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.voltar:hover {
+    color:rgb(31, 163, 146);
+}
+
+.voltar i{
+    color:rgb(31, 163, 146);
+}
+
+.criar form div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.criar form input {
+    padding: 6px;
+    width: 90%;
+    border: none;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.criar form label {
+    color: rgb(31, 163, 146);
+}
+
+.salvar {
+    margin-top: 12px;
+    padding: 7px 16px;
+    border:none;
+    background: rgb(31, 163, 146);
+    cursor: pointer;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.salvar:hover {
+    background: rgb(22, 121, 107);
+}
+
+.cancelar {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border:none;
+    background: rgb(218, 136, 29);
+    cursor: pointer;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.cancelar:hover {
+    background: rgb(167, 104, 21);
+    color:#fff
+}
+
+.remove-escrito {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border:none;
+    background: rgb(245, 11, 11);
+    cursor: pointer;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.remove-escrito:hover {
+    background: rgb(161, 17, 17);
+    color:#fff
+}
+
+
+.create-success {
+    margin: 12px 0;
+    background: rgb(32, 173, 155);
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.create-success h5 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.error-required {
+    margin: 12px 0;
+    background: rgb(218, 126, 126);
+    padding: 16px;
+    text-align: center;
+    border-radius: 4px;
+
+}
+
+.error-required h5 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.panel-actions {
+    margin-bottom: 10px;
+}
+
+.remove {
+    padding: 9px 16px;
+    font-size: 20px;
+    border:none;
+    border-radius: 12px;
+    background: rgb(227, 236, 235);
+    color:rgb(31, 163, 146);
+}
+
+.remove i {
+    color:rgb(31, 163, 146);
+}
+
+.remove:hover {
+    background: rgb(230, 71, 23);
+    color: #fff
+}
+
+.remove:hover i{
+    color: #fff
+}
+
+.edit {
+    padding: 9px 16px;
+    font-size: 20px;
+    border:none;
+    border-radius: 12px;
+    background: rgb(227, 236, 235);
+    color:rgb(31, 163, 146);
+}
+
+.edit i {
+    color:rgb(31, 163, 146);
+}
+
+.edit:hover {
+    background: rgb(230, 147, 23);
+    color: #fff
+}
+
+.edit:hover i{
+    color: #fff
+}

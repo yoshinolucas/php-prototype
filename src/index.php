@@ -1,5 +1,4 @@
 <?php 
-phpinfo();
 include_once 'includes/header.php';
 
 if($_POST['form'] == 'Y'){
