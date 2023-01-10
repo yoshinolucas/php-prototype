@@ -20,6 +20,13 @@ protege();
                     <li><a href="/pages/relatorios/relatorio_alteracoes.php">Alterações</a></li>
                 </ul>
             </li>
+            <li class="sub-menu"><a><i class="fa-solid fa-clipboard-list"></i>
+            Estoques<div style="float:right;margin:5px 5px 0 0" class='fa fa-caret-down right'></div></a>
+                <ul>
+                    <li><a href="/pages/estoques/produtos.php">Produtos</a></li>
+                    <li><a>Escritório</a></li>
+                </ul>
+            </li>
             <li><a><i class="fa-solid fa-database"></i>Database</a></li>
         </ul>
     </nav>

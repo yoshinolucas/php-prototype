@@ -20,7 +20,7 @@ body {
     justify-content: space-between;
     margin-left: 44px;
     background: rgb(82, 116, 99);
-    height: 44px;
+    height: 45px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     transition: margin-left 0.2s;
 }
@@ -285,7 +285,6 @@ body {
 
 .criar form div {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     margin-bottom: 18px;
 }
@@ -298,9 +297,17 @@ body {
 }
 
 .criar form label {
+    width: 10%;
     color: rgb(31, 163, 146);
 }
 
+.criar form .checkbox {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    border:none;
+    box-shadow: none;
+}
 .salvar {
     margin-top: 12px;
     padding: 7px 16px;
@@ -428,5 +435,27 @@ body {
 }
 
 .edit:hover i{
+    color: #fff
+}
+
+.excel {
+    padding: 13px 18px;
+    font-size: 20px;
+    border:none;
+    border-radius: 12px;
+    background: rgb(227, 236, 235);
+    color:rgb(31, 163, 146);
+}
+
+.excel i {
+    color:rgb(31, 163, 146);
+}
+
+.excel:hover {
+    background: rgb(99, 201, 31);
+    color: #fff
+}
+
+.excel:hover i{
     color: #fff
 }
