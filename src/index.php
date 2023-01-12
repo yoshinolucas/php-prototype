@@ -17,7 +17,7 @@ if($_POST['form'] == 'Y'){
         } else {
             $jwt = gerajwt($options);
             geracookie("token", $jwt);
-            print "<script>location.href='./pages/home.php?id=".urlencode($res['id'])."'</script>";
+            print "<script>location.href='./pages/home.php'</script>";
             exit;
         }
     }

@@ -21,7 +21,7 @@ if($_POST['form'] == 'Y'){
         if($_POST['unidades'] == '') $_POST['unidades'] = 0;
         $active = $_POST['active'] == 'checked' ? 1 : 0;
         if($id>0){
-            $run = mysql_fetch('UPDATE produtos SET name=:name,marca=:marca,unidades=:unidades WHERE id=:id',
+            $run = mysql_fetch('UPDATE produtos SET name=:name,marca=:marca,unidades=:unidades,active=:active WHERE id=:id',
             Array(':id'=>$id,':name'=>$_POST['name'],
             ':marca'=>$_POST['marca'],':unidades'=>$_POST['unidades'],
             ':active'=>$active));
@@ -87,9 +87,28 @@ if($_POST['form'] == 'Y'){
                 <div>
                     <label>Unidades:</label>
                     <input 
+                    value="<?php print $id>0?$produto['unidades']:(empty($_POST['unidades'])?0:$_POST['unidades'])?>"
                     type="number"
                     name="unidades">
                 </div>
+                <?php if($id>0){?>
+                    <div>
+                        <label>Data de cadastro:</label>
+                        <input 
+                        value="<?php print $produto['criado_em']?>"
+                        type="text"
+                        name="criado_em"
+                        readonly>
+                    </div>
+                    <div>
+                        <label>Última atualização:</label>
+                        <input 
+                        value="<?php print $produto['atualizado_em']?>"
+                        type="text"
+                        name="att_em"
+                        readonly>
+                    </div>
+                <?php }?>
                 <div>
                     <label>Ativo:</label>
                     <input 
@@ -105,7 +124,10 @@ if($_POST['form'] == 'Y'){
     </div>
 </div>
 </section>
+<script>
+    $('.checkbox').prop('checked', <?php print $produto['active'] ? 'true' : 'false'?>);
 
+</script>
 
 <?php 
 include '../../includes/footer.php';

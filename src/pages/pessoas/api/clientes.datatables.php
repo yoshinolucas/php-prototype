@@ -1,6 +1,7 @@
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT']."/includes/config.php";
 
+$dbname = 'clientes';
 // Reading value
 $draw = $_POST['draw'];
 $row = $_POST['start'];
@@ -24,19 +25,19 @@ if($searchValue != ''){
 }
 
 // Total number of records without filtering
-$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM users ");
+$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM ".$dbname." ");
 $stmt->execute();
 $records = $stmt->fetch();
 $totalRecords = $records['allcount'];
 
 // Total number of records with filtering
-$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM users WHERE 1 ".$searchQuery);
+$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM ".$dbname." WHERE 1 ".$searchQuery);
 $stmt->execute($searchArray);
 $records = $stmt->fetch();
 $totalRecordwithFilter = $records['allcount'];
 
 // Fetch records
-$stmt = $dbh->prepare("SELECT id, name, email, criado_em, atualizado_em FROM users WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
+$stmt = $dbh->prepare("SELECT id, name, email, telefone, criado_em, atualizado_em FROM ".$dbname." WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
 
 // Bind values
 foreach ($searchArray as $key=>$search) {
@@ -52,10 +53,12 @@ $data = array();
 
 foreach ($usersRecords as $row) {
    $data[] = array(
+      "DT_RowId"=>$row['id'],
       "select"=>"",
       "id"=>$row['id'],
       "name"=>$row['name'],
       "email"=>$row['email'],
+      "telefone"=>$row['telefone'],
       "criado_em"=>$row['criado_em'],
       "atualizado_em"=>$row['atualizado_em']
    );

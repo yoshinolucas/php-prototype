@@ -1,0 +1,39 @@
+.add {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 13px 16px;
+    font-size: 20px;
+    border:none;
+    border-radius: 12px;
+    background: rgb(227, 236, 235);
+    color:rgb(31, 163, 146);
+}
+
+.add i {
+    color:rgb(31, 163, 146);
+}
+
+.add:hover {
+    background: rgb(30, 124, 112);
+    color: #fff
+}
+
+.add:hover i{
+    color: #fff
+}
+
+.voltar {
+    font-size: 20px;
+    color:rgb(31, 163, 146);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.voltar:hover {
+    color:rgb(31, 163, 146);
+}
+
+.voltar i{
+    color:rgb(31, 163, 146);
+}

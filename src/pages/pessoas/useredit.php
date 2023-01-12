@@ -1,8 +1,8 @@
 <?php
-include_once '../includes/config.php';
-include_once '../includes/header.php'; 
-include_once '../includes/top.php';
-include_once '../includes/sidebar.php';
+include_once '../../includes/config.php';
+include_once '../../includes/header.php'; 
+include_once '../../includes/top.php';
+include_once '../../includes/sidebar.php';
 protege();
 
 $id = $_GET['id'];
@@ -92,8 +92,26 @@ if($_POST['form'] == 'Y'){
                     name="pass"
                     style="<?php if($error_obrigatorio!='' && empty($_POST['pass'])) print "border: 1px solid red"?>">
                 </div>
+                <?php if($id>0){?>
+                    <div>
+                        <label>Data de cadastro:</label>
+                        <input 
+                        value="<?php print $user['criado_em']?>"
+                        type="text"
+                        name="criado_em"
+                        readonly>
+                    </div>
+                    <div>
+                        <label>Última atualização:</label>
+                        <input 
+                        value="<?php print $user['atualizado_em']?>"
+                        type="text"
+                        name="att_em"
+                        readonly>
+                    </div>
+                <?php }?>
                 <button class="salvar" type="submit">Salvar</button>
-                <a class="cancelar" href="/pages/users.php">Cancelar</a>
+                <a class="cancelar" href="/pages/pessoas/users.php">Cancelar</a>
             </form>
         </div>
        
@@ -106,5 +124,5 @@ if($_POST['form'] == 'Y'){
 
 
 <?php 
-include '../includes/footer.php';
+include '../../includes/footer.php';
 ?>

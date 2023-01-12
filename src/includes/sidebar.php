@@ -11,7 +11,14 @@ protege();
     <nav>
         <ul>
             <li><a href="/pages/home.php"><i class="fa-solid fa-dashboard"></i>Dashboard</a></li>
-            <li><a href="/pages/users.php"><i class="fa-solid fa-user"></i>Usuários</a></li>
+            <li><a href="/pages/vendas.php"><i class="fa-solid fa-shop"></i>Vendas</a></li>
+            <li class="sub-menu"><a><i class="fa-solid fa-user"></i>
+            Pessoas<div style="float:right;margin:5px 5px 0 0" class='fa fa-caret-down right'></div></a>
+                <ul>
+                    <li><a href="/pages/pessoas/users.php">Usuários</a></li>
+                    <li><a href="/pages/pessoas/clientes.php">Clientes</a></li>
+                </ul>
+            </li>
             <li class="sub-menu"><a><i class="fa-solid fa-clipboard-list"></i>
             Relatórios<div style="float:right;margin:5px 5px 0 0" class='fa fa-caret-down right'></div></a>
                 <ul>

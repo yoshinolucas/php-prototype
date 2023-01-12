@@ -15,11 +15,11 @@ $searchArray = array();
 // Search
 $searchQuery = " ";
 if($searchValue != ''){
-   $searchQuery = " AND (name LIKE :name OR 
-   marca LIKE :marca) ";
+   $searchQuery = " AND (email LIKE :email OR 
+        name LIKE :name ) ";
    $searchArray = array( 
-        'name'=>"%$searchValue%",  
-        'marca'=>"%$searchValue%"    
+        'email'=>"%$searchValue%",
+        'name'=>"%$searchValue%",       
    );
 }
 
@@ -36,7 +36,7 @@ $records = $stmt->fetch();
 $totalRecordwithFilter = $records['allcount'];
 
 // Fetch records
-$stmt = $dbh->prepare("SELECT * FROM produtos WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
+$stmt = $dbh->prepare("SELECT id, name, email, criado_em, atualizado_em FROM users WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
 
 // Bind values
 foreach ($searchArray as $key=>$search) {
@@ -56,11 +56,9 @@ foreach ($usersRecords as $row) {
       "select"=>"",
       "id"=>$row['id'],
       "name"=>$row['name'],
-      "marca"=>$row['marca'],
-      "unidades"=>$row['unidades'],
-      "atualizado_em"=>$row['atualizado_em'],
-      "active"=>$row['active'] == 1 ? "<i class='fa fa-check'></i>" : "",
+      "email"=>$row['email'],
       "criado_em"=>$row['criado_em'],
+      "atualizado_em"=>$row['atualizado_em']
    );
 }
 

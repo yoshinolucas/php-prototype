@@ -37,8 +37,8 @@ protege();
                         <th>Nome</th>
                         <th>Marca</th>
                         <th>Unidades</th>
-                        <th>Criado em</th>
-                        <th>Atualizado em</th>
+                        <th>Data de cadastro</th>
+                        <th>Última atualização</th>
                         <th>Ativo</th>
                     </tr>
                 </thead>
@@ -101,12 +101,15 @@ $(document).ready( function () {
             }],
             select: {
                 info: false,
-                style: 'multi',
+                style: 'multi+shift',
                 selector: 'td:first-child'
             },
             order: [[1,'asc']]
         });
 
+        $('#produtosTable').on('click','tbody tr td:not(:nth-child(1))',function(){
+            location.href='produtoedit.php?id='+ $(this).parent().attr('id');            
+        });    
         $('#select-all').on('click',function() {
             if(this.checked) {$('#produtosTable tbody tr').addClass('selected') }
             else {($('#produtosTable tbody tr').removeClass('selected'))}

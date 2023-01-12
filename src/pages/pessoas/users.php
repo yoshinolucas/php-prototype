@@ -1,8 +1,8 @@
 <?php
-include_once '../includes/config.php';
-include_once '../includes/header.php'; 
-include_once '../includes/top.php';
-include_once '../includes/sidebar.php';
+include_once '../../includes/config.php';
+include_once '../../includes/header.php'; 
+include_once '../../includes/top.php';
+include_once '../../includes/sidebar.php';
 protege();
 ?>
 <section>
@@ -11,7 +11,7 @@ protege();
             <h4 class="panel-title">Usuários</h4>
             <div>
                 <button class="remove" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
-                <a class="add" href="/pages/useredit.php?id=0"><i class="fa fa-add"></i></a>
+                <a class="add" href="/pages/pessoas/useredit.php?id=0"><i class="fa fa-add"></i></a>
             </div>
         </div> 
         <div class="panel-body">
@@ -33,8 +33,8 @@ protege();
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Email</th>
-                        <th>Criado em</th>
-                        <th>Atualizado em</th>
+                        <th>Data de cadastro</th>
+                        <th>Última atualização</th>
                     </tr>
                 </thead>
                 <tbody>              
@@ -61,7 +61,7 @@ protege();
 
 </section>
 <?php 
-include_once '../includes/footer.php';
+include_once '../../includes/footer.php';
 ?>
 <script>
     $(document).ready( function () {
@@ -91,14 +91,14 @@ include_once '../includes/footer.php';
             }],
             select: {
                 info: false,
-                style: 'multi',
+                style: 'multi+shift',
                 selector: 'td:first-child'
             },
             order: [[1,'asc']]
         });
 
         $('#usersTable').on('click','tbody tr td:not(:nth-child(1))',function(){
-            location.href='useredit.php?id='+ $('tbody tr').children().eq(1).text();            
+            location.href='useredit.php?id='+ $(this).parent().attr('id');            
         });
 
         $('#select-all').on('click',function() {

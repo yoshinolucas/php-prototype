@@ -22,5 +22,8 @@ include_once $_SERVER['DOCUMENT_ROOT']."/includes/config.php";
     <title>Prototype</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css">
     <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
+    <link rel="stylesheet" href="/css/bar.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" href="/css/responsive.css">
 </head>
 <body>
