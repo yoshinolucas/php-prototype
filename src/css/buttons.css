@@ -1,39 +1,40 @@
-.add {
-    text-decoration: none;
-    cursor: pointer;
-    padding: 13px 16px;
-    font-size: 20px;
+.botao {
+    cursor:pointer;
+    width:50px;
+    height: 50px;
+    background: rgb(230, 230, 230);
+    font-size: 18px;
     border:none;
     border-radius: 12px;
-    background: rgb(227, 236, 235);
-    color:rgb(31, 163, 146);
+    color: #444;
 }
 
-.add i {
-    color:rgb(31, 163, 146);
-}
-
-.add:hover {
-    background: rgb(30, 124, 112);
-    color: #fff
-}
-
-.add:hover i{
-    color: #fff
-}
-
-.voltar {
-    font-size: 20px;
-    color:rgb(31, 163, 146);
+a.botao {
+    display: block;
+    justify-content: center;
+    text-align: center;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
+    cursor:pointer;
+    background: rgb(230, 230, 230);
+    font-size: 18px;
+    border:none;
+    border-radius: 12px;
+    width:50px;
+    height:50px;
+    color: #444;
 }
 
-.voltar:hover {
-    color:rgb(31, 163, 146);
+a.botao:hover {
+    background: rgb(202, 202, 202);
+    color: #444;
 }
 
-.voltar i{
-    color:rgb(31, 163, 146);
+.botao:hover {
+    background: rgb(202, 202, 202);
 }
+
+.botao-group {
+    display:flex;
+    justify-content: space-between;
+}
+

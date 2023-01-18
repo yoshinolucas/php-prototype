@@ -6,7 +6,6 @@ include_once '../includes/sidebar.php';
 
 protege();
 ?>
-
     <section>
         <div class="panel" id="panel">
             <div class="panel-header">

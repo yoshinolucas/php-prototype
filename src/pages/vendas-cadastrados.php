@@ -24,7 +24,7 @@ protege();
                 <div class="vendas">
                     <div class="clientes">
                         <h5 class="panel-title" style="text-align:center">Tabela de clientes</h5>
-                        <table id="clientesTable" class="pt-2 table table-hover table-bordered table-striped">
+                        <table id="clientesTable" class="pt-2 table table-hover table-bordered table-striped" width="100%">
                             <thead style="background: #444; color:#fff;">
                                 <tr>
                                     <th></th>
@@ -55,40 +55,6 @@ protege();
                         </div>         
                         <a class="add">Avançar</a>             
                     </div>    
-                    
-                    <!-- <div class="card">
-                        <div class="card-header">
-                            <h3 class="panel-title">Informações</h3>
-                        </div>
-                        <div class="card-body">
-                            <div>
-                                <label>Id</label>
-                                <input id="id" readonly>
-                            </div>
-                            <div>
-                                <label>Nome</label>
-                                <input id="name" readonly>
-                            </div>
-                            <div>
-                                <label>E-mail</label>
-                                <input id="email" readonly>
-                            </div>
-                            <div>
-                                <label>Telefone</label>
-                                <input id="tel" readonly>
-                            </div>
-                            <div>
-                                <label>Data de cadastro</label>
-                                <input id="criado_em" readonly>
-                            </div>
-                            <div>
-                                <label>Última atualização</label>
-                                <input id="atualizado_em" readonly>
-                            </div>
-
-                            <button class="add">Avançar</button>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>

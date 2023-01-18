@@ -11,10 +11,10 @@ protege();
     <div class="panel" id="panel">
         <div class="panel-header">
             <h4 class="panel-title">Produtos</h4>
-            <div>
-                <a href="/pages/estoques/api/excel-produtos.php" class="excel"><i class="fa-solid fa-file-excel"></i></a>
-                <button class="remove" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
-                <a class="add" href="/pages/estoques/produtoedit.php?id=0"><i class="fa fa-add"></i></a>
+            <div class="botao-group">
+                <a href="/pages/estoques/api/excel-produtos.php" class="botao"><i class="fa-solid fa-file-excel"></i></a>
+                <button class="botao" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
+                <a class="botao" href="/pages/estoques/produtoedit.php?id=0"><i class="fa fa-add"></i></a>
             </div>
         </div>
         <div class="panel-body">
@@ -57,7 +57,7 @@ protege();
             <div class="modal-body">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                     Certeza que quer excluir os<span></span> itens selecionados?</h1>
-                <button type="buttons" class="remove-escrito">Excluir</button>
+                <button type="button" class="remove-escrito">Excluir</button>
                 <button type="button" class="cancelar" data-bs-dismiss="modal">Cancelar</button>
             </div>
             </div>
@@ -77,6 +77,8 @@ $(document).ready( function () {
             responsive:true,
             processing: true,
             serverSide: true,
+            info: false,
+            lengthChange:false,
             ajax: {
                 url:'api/produtos.datatables.php',
                 type: 'POST'

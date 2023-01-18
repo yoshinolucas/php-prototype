@@ -69,6 +69,8 @@ include_once '../../includes/footer.php';
             responsive:true,
             processing: true,
             serverSide: true,
+            info: false,
+            lengthChange:false,
             ajax: {
                 url:'api/users.datatables.php',
                 type: 'POST'
