@@ -13,8 +13,8 @@ protege();
             <h4 class="panel-title">Produtos</h4>
             <div class="botao-group">
                 <a href="/pages/estoques/api/excel-produtos.php" class="botao"><i class="fa-solid fa-file-excel"></i></a>
-                <button class="botao" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
-                <a class="botao" href="/pages/estoques/produtoedit.php?id=0"><i class="fa fa-add"></i></a>
+                <button class="botao botao-theme04 respiro-x" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
+                <a class="botao botao-theme01" href="/pages/estoques/produtoedit.php?id=0"><i class="fa fa-add"></i></a>
             </div>
         </div>
         <div class="panel-body">
@@ -27,8 +27,16 @@ protege();
                     <h5>Produto atualizado com sucesso.</h5>
                 </div>
             <?php }?>
-            <table id="produtosTable" class="pt-2 table table-hover table-bordered table-striped" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
-                <thead style="background: #444; color:#fff;">
+
+
+            <div class="input-icon">
+                <input type="search" id="search" placeholder="Pesquisar...">
+            </div>
+            
+
+            
+            <table class="table01" id="produtosTable" class="pt-2" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
+                <thead>
                     <tr>
                         <th style="text-align:center">
                             <input id="select-all" type="checkbox">
@@ -71,72 +79,75 @@ include_once '../../includes/footer.php';
 ?>
 
 <script>
-
-$(document).ready( function () {
-        var table = $('#produtosTable').DataTable({     
-            responsive:true,
-            processing: true,
-            serverSide: true,
+    var table = $('#produtosTable').DataTable({     
+        responsive:{
+            details: false
+        },
+        processing: true,
+        serverSide: true,
+        info: false,
+        lengthChange:false,
+        ajax: {
+            url:'api/produtos.datatables.php',
+            type: 'POST'
+        },
+        language: {
+            url: '/locale/dataTable.json'
+        },
+        columns: [
+            { data: 'select'},
+            { data: 'id' },
+            { data: 'name' },
+            { data: 'marca' },
+            { data: 'unidades' },
+            { data: 'criado_em' },
+            { data: 'atualizado_em' },
+            { data: 'active' },
+        ],
+        columnDefs: [{
+            targets: 0,
+            orderable: false,
+            className: 'select-checkbox'
+        }],
+        select: {
             info: false,
-            lengthChange:false,
-            ajax: {
-                url:'api/produtos.datatables.php',
-                type: 'POST'
-            },
-            language: {
-                url: '/locale/dataTable.json'
-            },
-            columns: [
-                { data: 'select'},
-                { data: 'id' },
-                { data: 'name' },
-                { data: 'marca' },
-                { data: 'unidades' },
-                { data: 'criado_em' },
-                { data: 'atualizado_em' },
-                { data: 'active' },
-            ],
-            columnDefs: [{
-                targets: 0,
-                orderable: false,
-                className: 'select-checkbox'
-            }],
-            select: {
-                info: false,
-                style: 'multi+shift',
-                selector: 'td:first-child'
-            },
-            order: [[1,'asc']]
-        });
+            style: 'multi+shift',
+            selector: 'td:first-child'
+        },
+        order: [[1,'asc']]
+    });
 
-        $('#produtosTable').on('click','tbody tr td:not(:nth-child(1))',function(){
-            location.href='produtoedit.php?id='+ $(this).parent().attr('id');            
-        });    
-        $('#select-all').on('click',function() {
-            if(this.checked) {$('#produtosTable tbody tr').addClass('selected') }
-            else {($('#produtosTable tbody tr').removeClass('selected'))}
+    $('#search').keyup(function(){
+        table.search($(this).val()).draw() ;
+    })
+
+    $('#produtosTable').on('click','tbody tr td:not(:nth-child(1))',function(){
+        location.href='produtoedit.php?id='+ $(this).parent().attr('id');            
+    });    
+    $('#select-all').on('click',function() {
+        if(this.checked) {$('#produtosTable tbody tr').addClass('selected') }
+        else {($('#produtosTable tbody tr').removeClass('selected'))}
+    })
+
+    function getSelecionados() {
+        selecionados = [];
+        $('.selected').each(function(){
+            var selecionado = $(this).children().eq(1);
+            selecionados.push(selecionado.text()); 
         })
+        return selecionados;
+    }
 
-        function getSelecionados() {
-            selecionados = [];
-            $('.selected').each(function(){
-                var selecionado = $(this).children().eq(1);
-                selecionados.push(selecionado.text()); 
-            })
-            return selecionados;
-        }
-
-        $('.remove-escrito').on('click',function(){
-            $.ajax({
-                url:'api/remover-produtos.php',
-                type: 'POST',
-                data: {
-                    ids: JSON.stringify(getSelecionados())
-                }
-            }).done(function(res){
-                location.reload();
-            })
-        });
+    $('.remove-escrito').on('click',function(){
+        $.ajax({
+            url:'api/remover-produtos.php',
+            type: 'POST',
+            data: {
+                ids: JSON.stringify(getSelecionados())
+            }
+        }).done(function(res){
+            location.reload();
+        })
     });
 
 

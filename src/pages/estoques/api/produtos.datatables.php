@@ -16,7 +16,7 @@ $searchArray = array();
 $searchQuery = " ";
 if($searchValue != ''){
    $searchQuery = " AND (name LIKE :name OR 
-   marca LIKE :marca) ";
+   marca LIKE :marca ) ";
    $searchArray = array( 
         'name'=>"%$searchValue%",  
         'marca'=>"%$searchValue%"    
@@ -24,13 +24,13 @@ if($searchValue != ''){
 }
 
 // Total number of records without filtering
-$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM users ");
+$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM produtos ");
 $stmt->execute();
 $records = $stmt->fetch();
 $totalRecords = $records['allcount'];
 
 // Total number of records with filtering
-$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM users WHERE 1 ".$searchQuery);
+$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM produtos WHERE 1 ".$searchQuery);
 $stmt->execute($searchArray);
 $records = $stmt->fetch();
 $totalRecordwithFilter = $records['allcount'];

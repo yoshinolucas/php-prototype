@@ -10,9 +10,9 @@
 }
 
 a.botao {
-    display: block;
+    display:flex;
+    align-items: center;
     justify-content: center;
-    text-align: center;
     text-decoration: none;
     cursor:pointer;
     background: rgb(230, 230, 230);
@@ -22,6 +22,7 @@ a.botao {
     width:50px;
     height:50px;
     color: #444;
+    transition: 0.3s;
 }
 
 a.botao:hover {
@@ -35,6 +36,45 @@ a.botao:hover {
 
 .botao-group {
     display:flex;
-    justify-content: space-between;
+}
+
+.botao-theme01 {
+    background: var(--primary01) !important;
+    color: #fff !important;
+    transition: 0.3s;
+}
+
+.botao-theme01:hover {
+    background: var(--primary01Hover) !important;
+}
+
+.botao-theme02 {
+    background: var(--info) !important;
+    color: #fff !important;
+    transition: 0.3s;
+}
+
+.botao-theme02:hover {
+    background: var(--infoHover) !important;
+}
+
+.botao-theme03 {
+    background: var(--warning) !important;
+    color: #fff !important;
+    transition: 0.3s;
+}
+
+.botao-theme03:hover {
+    background: var(--warningHover) !important;
+}
+
+.botao-theme04 {
+    background: var(--danger) !important;
+    color: #fff !important;
+    transition: 0.3s;
+}
+
+.botao-theme04:hover {
+    background: var(--dangerHover) !important;
 }
 

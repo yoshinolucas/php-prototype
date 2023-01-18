@@ -1,3 +1,30 @@
+:root {
+    --primary01:rgb(31, 163, 146);
+    --primary01Hover:rgb(25, 129, 115);
+
+    --primary02: rgb(209, 241, 237);
+    --primary02Hover: rgb(168, 207, 203);
+
+    --primary03: rgb(31, 143, 130);
+    --primary03Hover: rgb(15, 92, 84);
+
+    --primary04: rgb(18, 88, 80);
+    --primary04Hover: rgb(8, 48, 44);
+
+    --info: rgb(54, 184, 166);
+    --infoHover: rgb(44, 151, 137);
+
+    --warning: rgb(226, 160, 84);
+    --warningHover: rgb(204, 143, 73);
+    
+    --danger: rgb(218, 65, 86);
+    --dangerHover: rgb(184, 53, 71);
+
+    --shadow01:2px 2px 2px 1px rgba(206, 206, 206, 0.2);
+    --shadow02:2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +49,28 @@ input[type="text"]{
 input[type="number"]{
     border: none;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.input-icon{
+    display: inline-block;
+    position: relative;
+}
+
+.input-icon:after {
+    font-size: 14px;
+    position: absolute;
+    color: var(--primary03);
+    font-family: 'FontAwesome';
+    content: '\f002';
+    right: 13px;
+    top:8px;
+}
+
+input[type="search"]{
+    border: .2px solid var(--primary01);
+    border-radius: 24px;
+    height: 35px;
+    padding: 0 12px;
 }
 
 input[readonly] {
@@ -77,6 +126,23 @@ input[readonly] {
     align-items: center;
     padding-bottom: 24px;
     border-bottom: 1px solid rgb(31, 163, 146)
+}
+
+@media screen and (max-width: 550px) {
+    .panel-header {
+        border-bottom: none;
+        margin-bottom: 48px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input[type="search"] {
+        width:12rem;
+    }
+
+    .botao-group {
+        margin-top: 8px;
+    }
 }
 
 .panel-body {
@@ -199,7 +265,36 @@ input[readonly] {
     margin-bottom: 10px;
 }
 
+.respiro-x {
+    margin: 0 6px;
+}
 
+.respiro-y {
+    margin: 6px 0;
+}
 
+.m-left {
+    margin-left: 6px;
+}
+
+.m-right {
+    margin-right: 6px;
+}
+
+.m-top {
+    margin-top: 6px;
+}
+
+.m-bottom {
+    margin-bottom: 6px;
+}
+
+.carrosel {
+
+}
+
+.carrosel ul > li{
+    display: inline-block;
+}
 
 

@@ -1,0 +1,151 @@
+.paginate_button {
+    background: var(--primary03) !important;
+    border-radius: 8px;
+}
+
+.paginate_button:hover{
+    background: var(--primary03Hover) !important;
+}
+
+.paginate_button a {
+    text-decoration: none;
+    color: #fff
+}
+
+.paginate_button a:hover {
+    text-decoration: none;
+    color: #fff
+}
+
+.pagination {
+    margin-right:7px
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+tr.selected > * {
+    box-shadow: inset 0 0 0 9999px var(--primary03) !important;
+}
+ 
+.selected .select-checkbox:after {
+    font-family: 'FontAwesome';
+    font-size: 15px !important;
+    margin-top: -11px !important;
+}
+
+.dataTables_wrapper {
+    margin-top: 10px;
+}
+
+.table01 {
+    margin-top: 10px;
+    border: 1px solid var(--primary01);
+    border-radius: 4px;
+}
+
+.table01 thead th {
+    border-right: 1px solid #fff;
+}
+
+.table01 thead th:last-child {
+    border-right: none;
+}
+
+.table01 thead {
+    background: var(--primary01);
+    color: #fff
+}
+
+.table01 tbody td{
+    border-bottom: .4px solid var(--primary01);
+}
+
+.table01 tbody tr td {
+    border-right: .4px solid var(--primary01);
+}
+
+.table01 tbody tr td:last-child {
+    border-right: none
+}
+
+.table01 tr.odd {
+    background-color: #fff !important;
+}
+
+.table01 tr.odd:hover {
+    background-color: rgb(245, 245, 245) !important;
+}
+.table01 tr.even {
+    background-color: #f0f0f0;
+}
+.table01 tr.even:hover {
+    background-color: #e7e7e7;
+}
+
+.table02 {
+    margin-top: 10px;
+    border: 1px solid var(--primary04);
+    border-radius: 4px;
+}
+
+.table02 thead {
+    background: var(--primary04);
+    color: #fff
+}
+
+.table02 tbody td{
+    border-bottom: .4px solid var(--primary04);
+}
+
+.table02 thead th {
+    border-right: 1px solid #fff;
+}
+
+.table02 thead th:last-child {
+    border-right: none;
+}
+
+.table01 tbody tr td {
+    border-right: .4px solid var(--primary04);
+}
+
+.table02 tbody tr td:last-child {
+    border-right: none
+}
+
+.table02 tr.odd {
+    background-color: #fff !important;
+}
+.table02 tr.even {
+    background-color: #ececec;
+}
+
+.table02 tr.odd {
+    background-color: #fff !important;
+}
+
+.table02 tr.odd:hover {
+    background-color: rgb(245, 245, 245) !important;
+}
+.table02 tr.even {
+    background-color: #f0f0f0;
+}
+.table02 tr.even:hover {
+    background-color: #e7e7e7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

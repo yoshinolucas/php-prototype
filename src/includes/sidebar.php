@@ -43,23 +43,30 @@ protege();
 </div>
 
 <script>
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
     $('.sub-menu ul').hide();
     $(".sub-menu a").click(function () {
         $(this).parent(".sub-menu").children("ul").slideToggle("100");
         $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
     });
- </script>
-
-<script>
     const openSidebar = () => {
         document.getElementById("sidebar").style.width = "200px";
         document.getElementById("panel").style.marginLeft = "224px";
         document.getElementById("header").style.marginLeft = "199px";
+        sleep
+        sleep(300).then(()=>{
+            table.draw();
+        }) 
     };
 
     const closeSidebar = () => {
         document.getElementById("sidebar").style.width = "0";
-        document.getElementById("panel").style.marginLeft = "69px";
+        document.getElementById("panel").style.marginLeft = "70px";
         document.getElementById("header").style.marginLeft = "44px";
+        sleep(300).then(()=>{
+            table.draw();
+        }) 
     };
 </script>

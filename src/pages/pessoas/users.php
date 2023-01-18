@@ -2,16 +2,15 @@
 include_once '../../includes/config.php';
 include_once '../../includes/header.php'; 
 include_once '../../includes/top.php';
-include_once '../../includes/sidebar.php';
 protege();
 ?>
 <section>
     <div class="panel" id="panel">    
         <div class="panel-header">
             <h4 class="panel-title">Usuários</h4>
-            <div>
-                <button class="remove" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
-                <a class="add" href="/pages/pessoas/useredit.php?id=0"><i class="fa fa-add"></i></a>
+            <div class="botao-group">
+                <button class="botao botao-theme04 m-right" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
+                <a class="botao botao-theme01" href="/pages/pessoas/useredit.php?id=0"><i class="fa fa-add"></i></a>
             </div>
         </div> 
         <div class="panel-body">
@@ -24,8 +23,12 @@ protege();
                     <h5>Usuário atualizado com sucesso.</h5>
                 </div>
             <?php }?>
-            <table id="usersTable" class="pt-2 table table-hover table-bordered table-striped" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
-                <thead style="background: #444; color:#fff;">
+
+            <div class="input-icon">
+                <input type="search" id="search" placeholder="Pesquisar...">
+            </div>
+            <table id="usersTable" class="table02" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
+                <thead>
                     <tr>
                         <th style="text-align:center">
                             <input id="select-all" type="checkbox">
@@ -61,77 +64,79 @@ protege();
 
 </section>
 <?php 
+include_once '../../includes/sidebar.php';
 include_once '../../includes/footer.php';
 ?>
 <script>
-    $(document).ready( function () {
-        var table = $('#usersTable').DataTable({     
-            responsive:true,
-            processing: true,
-            serverSide: true,
+    var table = $('#usersTable').DataTable({     
+        responsive: {
+            details: false
+        },
+        processing: true,
+        serverSide: true,
+        info: false,
+        lengthChange:false,
+        ajax: {
+            url:'api/users.datatables.php',
+            type: 'POST'
+        },
+        language: {
+            url: '/locale/dataTable.json'
+        },
+        columns: [
+            { data: 'select'},
+            { data: 'id' },
+            { data: 'name' },
+            { data: 'email' },
+            { data: 'criado_em' },
+            { data: 'atualizado_em' }
+        ],
+        columnDefs: [{
+            targets: 0,
+            orderable: false,
+            className: 'select-checkbox'
+        }],
+        select: {
             info: false,
-            lengthChange:false,
-            ajax: {
-                url:'api/users.datatables.php',
-                type: 'POST'
-            },
-            language: {
-                url: '/locale/dataTable.json'
-            },
-            columns: [
-                { data: 'select'},
-                { data: 'id' },
-                { data: 'name' },
-                { data: 'email' },
-                { data: 'criado_em' },
-                { data: 'atualizado_em' }
-            ],
-            columnDefs: [{
-                targets: 0,
-                orderable: false,
-                className: 'select-checkbox'
-            }],
-            select: {
-                info: false,
-                style: 'multi+shift',
-                selector: 'td:first-child'
-            },
-            order: [[1,'asc']]
-        });
+            style: 'multi+shift',
+            selector: 'td:first-child'
+        },
+        order: [[1,'asc']]
+    });
+    $('#search').keyup(function(){
+        table.search($(this).val()).draw() ;
+    })
 
-        $('#usersTable').on('click','tbody tr td:not(:nth-child(1))',function(){
-            location.href='useredit.php?id='+ $(this).parent().attr('id');            
-        });
+    $('#usersTable').on('click','tbody tr td:not(:nth-child(1))',function(){
+        location.href='useredit.php?id='+ $(this).parent().attr('id');            
+    });
 
-        $('#select-all').on('click',function() {
-            if(this.checked) {$('#usersTable tbody tr').addClass('selected') }
-            else {($('#usersTable tbody tr').removeClass('selected'))}
+    $('#select-all').on('click',function() {
+        if(this.checked) {$('#usersTable tbody tr').addClass('selected') }
+        else {($('#usersTable tbody tr').removeClass('selected'))}
+    })
+
+
+    function getSelecionados() {
+        selecionados = [];
+        $('.selected').each(function(){
+            var selecionado = $(this).children().eq(1);
+            selecionados.push(selecionado.text()); 
         })
+        return selecionados;
+    }
 
-
-        function getSelecionados() {
-            selecionados = [];
-            $('.selected').each(function(){
-                var selecionado = $(this).children().eq(1);
-                selecionados.push(selecionado.text()); 
-            })
-            return selecionados;
-        }
-
-        $('.remove-escrito').on('click',function(){
-            
-            $.ajax({
-                url:'api/remover-user.php',
-                type: 'POST',
-                data: {
-                    ids: JSON.stringify(getSelecionados())
-                }
-            }).done(function(res){
-                location.reload();
-            })
-        });
-
-
+    $('.remove-escrito').on('click',function(){
+        
+        $.ajax({
+            url:'api/remover-user.php',
+            type: 'POST',
+            data: {
+                ids: JSON.stringify(getSelecionados())
+            }
+        }).done(function(res){
+            location.reload();
+        })
     });
 
 
