@@ -34,3 +34,14 @@
     color: #fff;
     font-weight: 600;
 }
+
+.error {
+    position: absolute;
+    top:20%;
+    text-align: center;
+    padding: 12px 12px 6px 12px;
+    background: rgb(218, 126, 126);
+    border-radius: 6px;
+    color: #fff;
+}
+

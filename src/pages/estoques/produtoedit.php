@@ -5,6 +5,7 @@ include_once '../../includes/top.php';
 include_once '../../includes/sidebar.php';
 protege();
 
+$copy = $_GET['copy'];
 $id = $_GET['id'];
 if($id>0){
     $produto = mysql_fetchRow('SELECT * FROM produtos WHERE id=:id',
@@ -20,7 +21,7 @@ if($_POST['form'] == 'Y'){
     } else {
         if($_POST['unidades'] == '') $_POST['unidades'] = 0;
         $active = $_POST['active'] == 'checked' ? 1 : 0;
-        if($id>0){
+        if($id>0 and $copy!=1){
             $run = mysql_fetch('UPDATE produtos SET name=:name,marca=:marca,unidades=:unidades,active=:active WHERE id=:id',
             Array(':id'=>$id,':name'=>$_POST['name'],
             ':marca'=>$_POST['marca'],':unidades'=>$_POST['unidades'],
@@ -38,7 +39,7 @@ if($_POST['form'] == 'Y'){
         if(!$run) {
             $error = "Erro interno. Por favor tentar novamente mais tarde.";
         } else {
-            $success = $id>0?2:1;
+            $success = $id>0 AND $copy != 1 ?2:1;
             print "<script>location.href='/pages/estoques/produtos.php?id=".$success."'</script>";
             exit;             
         }
@@ -65,7 +66,7 @@ if($_POST['form'] == 'Y'){
         </div>
     <?php }?>
     <div class="panel-header" style="margin-top:12px">
-        <h4 class="panel-title"><?php print $id>0 ? 'Atualizar informações':'Novo Produto'?></h4>
+        <h4 class="panel-title"><?php print ($id>0 and $copy!=1) ? 'Atualizar informações':'Novo Produto'?></h4>
     </div>
     <div class="panel-body">
         <div class="criar">
@@ -91,7 +92,7 @@ if($_POST['form'] == 'Y'){
                     type="number"
                     name="unidades">
                 </div>
-                <?php if($id>0){?>
+                <?php if($id>0 and $copy!=1){?>
                     <div>
                         <label>Data de cadastro:</label>
                         <input 
@@ -117,8 +118,11 @@ if($_POST['form'] == 'Y'){
                     value="checked"
                     name="active">
                 </div>
-                <button class="salvar" type="submit">Salvar</button>
-                <a class="cancelar" href="/pages/estoques/produtos.php">Cancelar</a>
+                <div class="botao-group">
+                    <button class="botao botao-theme01  m-right" type="submit">Salvar</button>
+                    <a class="botao botao-theme03" href="/pages/estoques/produtos.php">Cancelar</a>
+                </div>
+                
             </form>
         </div>
     </div>

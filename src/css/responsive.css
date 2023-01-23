@@ -22,6 +22,23 @@
         border-right: none;
     }
 
+
+    .filters-menu div{
+        display: block;
+    }
+
+    .filters-menu label{
+        width: 30%;
+    }
+
+    .filters-menu input{
+        width: 100%;
+    }
+
+    .filters-menu select{
+        width: 100%;
+    }
+
 }
 
 @media screen and (max-width: 570px) {
@@ -54,15 +71,6 @@
     
 }
 
-@media screen and (max-width: 720px) {
-    .criar form input {
-        width: 70%;
-    }
-    
-    .criar form label {
-        width: 30%;
-    }
-}
 
 @media screen and (max-width: 730px) {
     .table01 tbody tr td:nth-child(5) {
@@ -78,4 +86,61 @@
         border-right: none;
     }
 
+    .ipt-group {
+        display:block
+    }
+
+
 }
+@media screen and (max-width: 890px) {
+    .criar form input {
+        width: 70%;
+    }
+    
+    .criar form label {
+        width: 30%;
+    }
+
+    .table-header {
+        display: block;
+        flex-direction: column;
+    }
+
+    .fast-menu {
+        margin-top:10px;
+    }
+
+}
+
+
+
+@media screen and (max-width: 920px) {
+    .filters-menu {
+        width: 100%;
+        margin: 12px 0;
+    }
+
+    .filters-menu label{
+        width: 100%;
+    }
+
+    .filters-menu input{
+        width: 100%;
+    }
+
+    .filters-menu select{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .ipt-group {
+        display:block;
+    }
+}
+
+
+
+
+
+

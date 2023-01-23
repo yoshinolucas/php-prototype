@@ -15,14 +15,16 @@ $searchArray = array();
 // Search
 $searchQuery = " ";
 if($searchValue != ''){
-   $searchQuery = " AND (name LIKE :name OR 
+   $searchQuery .= "AND (name LIKE :name OR 
    marca LIKE :marca ) ";
    $searchArray = array( 
         'name'=>"%$searchValue%",  
         'marca'=>"%$searchValue%"    
    );
-}
+} 
 
+if($_POST['min'] != '' AND $_POST['max'] != '') $searchQuery .= "AND criado_em ".$_POST['min']." between ".$_POST['max']." ";
+if($_POST['marca'] != 'todos') $searchQuery .= "AND marca = '".$_POST['marca']."' ";
 // Total number of records without filtering
 $stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM produtos ");
 $stmt->execute();

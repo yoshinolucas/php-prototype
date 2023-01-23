@@ -131,6 +131,12 @@ tr.selected > * {
     background-color: #e7e7e7;
 }
 
+.table-header {
+    margin: 0 7px;
+    display: flex;
+    justify-content: space-between;
+}
+
 
 
 

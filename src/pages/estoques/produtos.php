@@ -11,13 +11,10 @@ protege();
     <div class="panel" id="panel">
         <div class="panel-header">
             <h4 class="panel-title">Produtos</h4>
-            <div class="botao-group">
-                <a href="/pages/estoques/api/excel-produtos.php" class="botao"><i class="fa-solid fa-file-excel"></i></a>
-                <button class="botao botao-theme04 respiro-x" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
-                <a class="botao botao-theme01" href="/pages/estoques/produtoedit.php?id=0"><i class="fa fa-add"></i></a>
-            </div>
         </div>
+
         <div class="panel-body">
+
             <?php if($_GET['id'] == 1) { ?>
                 <div class="create-success">
                     <h5>Produto criado com sucesso.</h5>
@@ -29,9 +26,93 @@ protege();
             <?php }?>
 
 
-            <div class="input-icon">
-                <input type="search" id="search" placeholder="Pesquisar...">
+
+            <div class="table-header">
+
+
+                <div class="filters">
+
+                    <button id="filters" class="botao-theme01">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+                    <div class="input-icon">
+                        <input type="search" id="search" placeholder="Pesquisar...">
+                    </div>
+                    
+                </div>          
+                
+
+                <div class="fast-menu">
+                    <div id="mais-fast-menu" class="botao-group m-right" style="display:none">
+                        <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
+                        <a class="botao-sm" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>   
+                    </div>
+                    <i style="cursor:pointer; align-self:center" id="expand-mais-fast-menu" class="fa-solid fa-angle-left m-right"></i>
+                    <div class="botao-group">
+                        <a id="copy" class="botao-sm"><i class="fa fa-copy"></i></a>
+                        <button class="botao-sm botao-theme04 respiro-x" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
+                        <a class="botao-sm botao-theme01" href="/pages/estoques/produtoedit.php?id=0"><i class="fa fa-add"></i></a>
+                        <button id="refresh" class="botao-sm m-left"><i class="fa fa-refresh"></i></button>
+
+                    </div>
+                </div>
+
             </div>
+
+
+            <div class="filters-menu">
+                <div class="m-bottom"> 
+                    <label>Período: </label>
+                    <div class="ipt-group">
+                        <select id="per">
+                            <option value="todos">Todos</option>
+                            <option value="hoje">Hoje</option>
+                            <option value="ontem">Ontem</option>
+                            <option value="semana">Últimos 7 dias</option>
+                            <option value="mes">Últimos 30 dias</option>
+                            <option value="meio-ano">Últimos 180 dias</option>
+                        </select>
+                        <span>&nbsp;Ou&nbsp;</span>
+                        <div>
+                            <input id="min" type="date">
+                        </div>
+                        <span>&nbsp;á&nbsp;</span>
+                        <div>
+                            <input id="max" type="date">
+                        </div>
+                    </div>
+                    
+                    
+
+                </div>
+                <div class="m-bottom">
+                    <label>Marca: </label>
+                    <select id="marca">
+                        <option value="todos">Todos</option>
+                        <?php
+                            $produtos = mysql_fetchAll('SELECT DISTINCT marca FROM produtos');
+                            foreach($produtos as $produto){
+                                print "<option value='".$produto['marca']."'>".$produto['marca']."</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+                <div class="m-bottom">
+                    <label>Categoria: </label>
+                    <select id="categoria">
+                        <option value="todos">Todos</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    
+                    <button id="filter-submit" class="botao-sm botao-theme02">Aplicar</button>
+                    <button id="filter-clear" class="botao-sm botao-theme03" >Limpar</button>
+
+                </div>
+            </div>
+            
             
 
             
@@ -55,6 +136,8 @@ protege();
             </table>
         </div>
     </div>
+
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -79,6 +162,9 @@ include_once '../../includes/footer.php';
 ?>
 
 <script>
+    $(document).ready(function(){
+        $('#filters-menu').hide();
+    })
     var table = $('#produtosTable').DataTable({     
         responsive:{
             details: false
@@ -89,7 +175,12 @@ include_once '../../includes/footer.php';
         lengthChange:false,
         ajax: {
             url:'api/produtos.datatables.php',
-            type: 'POST'
+            type: 'POST',
+            data: function( d ) {
+                d.per = $('#per').val();
+                d.marca = $('#marca').val();
+                d.categoria = $('#categoria').val();
+            }
         },
         language: {
             url: '/locale/dataTable.json'
@@ -128,6 +219,51 @@ include_once '../../includes/footer.php';
         if(this.checked) {$('#produtosTable tbody tr').addClass('selected') }
         else {($('#produtosTable tbody tr').removeClass('selected'))}
     })
+
+    $('#copy').on('click',function(){
+        selecionado = getSelecionados();
+        if(selecionado.length == 1) {
+            location.href="/pages/estoques/produtoedit.php?id="+selecionado[0]+"&copy=1";
+        } else {
+            alert('Escolha no máximo 1 produto');
+        }
+    });
+
+    $('#filters').on('click', function(){
+        $('.filters-menu').slideToggle();
+    });
+
+    $('#filter-submit, #refresh').on('click', function(){
+        table.draw();
+    });
+
+
+    $('#min').on('click', function(){
+        $('#min').removeAttr('readonly');
+        $('#max').removeAttr('readonly');
+        $('#per').attr('readonly', 'true');
+    });
+
+    $('#per').on('click', function(){
+        $('#per').removeAttr('readonly');
+        $('#min').attr('readonly', 'true');
+        $('#max').attr('readonly', 'true');
+    })
+
+    $('#filter-clear').on('click', function(){
+        $('#per').val('todos');
+        $('#min').val('');
+        $('#max').val('todos');
+        $('#marca').val('todos');
+        $('#categoria').val('todos');
+    });
+
+    $('#expand-mais-fast-menu').on('click',function(){
+        $('#mais-fast-menu').animate({width:'toggle'},350, function(){
+            $("#expand-mais-fast-menu").toggleClass('fa-rotate-180');
+        });
+        
+    });
 
     function getSelecionados() {
         selecionados = [];
