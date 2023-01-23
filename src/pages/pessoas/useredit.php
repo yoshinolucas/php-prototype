@@ -110,8 +110,11 @@ if($_POST['form'] == 'Y'){
                         readonly>
                     </div>
                 <?php }?>
-                <button class="salvar" type="submit">Salvar</button>
-                <a class="cancelar" href="/pages/pessoas/users.php">Cancelar</a>
+                <div class="botao-group">
+                    <button class="botao botao-theme01 m-right" type="submit">Salvar</button>
+                    <a class="botao botao-theme03" href="/pages/pessoas/users.php">Cancelar</a>
+                </div>
+                
             </form>
         </div>
        

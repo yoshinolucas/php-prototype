@@ -6,3 +6,76 @@
         font-size: 18px;
     }
 }
+
+
+@media screen and (max-width: 520px) {
+    .table01 tbody tr td:nth-child(3) {
+        border-right: none;
+    }
+    .table01 thead tr th:nth-child(3) {
+        border-right: none;
+    }
+    .table02 tbody tr td:nth-child(3) {
+        border-right: none;
+    }
+    .table02 thead tr th:nth-child(3) {
+        border-right: none;
+    }
+
+}
+
+@media screen and (max-width: 570px) {
+    .panel-header {
+        height: 100%;
+        display: block;
+    }
+
+    input[type="search"]{
+        width: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 630px) {
+    .table01 tbody tr td:nth-child(4) {
+        border-right: none;
+    }
+    .table01 thead tr th:nth-child(4) {
+        border-right: none;
+    }
+    .table02 tbody tr td:nth-child(4) {
+        border-right: none;
+    }
+    .table02 thead tr th:nth-child(4) {
+        border-right: none;
+    }
+
+    
+}
+
+@media screen and (max-width: 720px) {
+    .criar form input {
+        width: 70%;
+    }
+    
+    .criar form label {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .table01 tbody tr td:nth-child(5) {
+        border-right: none;
+    }
+    .table01 thead tr th:nth-child(5) {
+        border-right: none;
+    }
+    .table02 tbody tr td:nth-child(5) {
+        border-right: none;
+    }
+    .table02 thead tr th:nth-child(5) {
+        border-right: none;
+    }
+
+}

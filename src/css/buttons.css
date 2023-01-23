@@ -1,7 +1,7 @@
 .botao {
     cursor:pointer;
-    width:50px;
-    height: 50px;
+    min-width: 10%;
+    padding: 13px 20px;
     background: rgb(230, 230, 230);
     font-size: 18px;
     border:none;
@@ -19,8 +19,8 @@ a.botao {
     font-size: 18px;
     border:none;
     border-radius: 12px;
-    width:50px;
-    height:50px;
+    min-width:10%;
+    padding: 13px 18px;
     color: #444;
     transition: 0.3s;
 }
