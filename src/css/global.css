@@ -245,6 +245,19 @@ input[type="date"]{
     display: flex;
 }
 
+.mais-fast-menu {
+    display:none
+}
+
+.mais-fast-menu-buttons {
+    display:flex
+}
+
+.mais-fast-menu-buttons a{
+    font-size: 18px !important;
+    padding: 12px 14px !important;
+}
+
 .fast-menu .botao-group a, .fast-menu .botao-group button{
     font-size: 18px;
     padding: 6px 12px;
@@ -254,6 +267,7 @@ input[type="date"]{
     display:flex; 
     align-items:center;
 }
+
 
 
 

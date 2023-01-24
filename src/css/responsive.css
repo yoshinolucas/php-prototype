@@ -86,8 +86,21 @@
         border-right: none;
     }
 
-    .ipt-group {
-        display:block
+    .fast-menu {
+        display: block
+    }
+
+    #expand-mais-fast-menu {
+        display:none
+    }
+
+    .mais-fast-menu {
+        display: flex
+    }
+
+    .mais-fast-menu-buttons {
+        display: flex;
+        margin-bottom: 4px
     }
 
 
@@ -133,7 +146,7 @@
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
     .ipt-group {
         display:block;
     }

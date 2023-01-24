@@ -43,9 +43,12 @@ protege();
                 
 
                 <div class="fast-menu">
-                    <div id="mais-fast-menu" class="botao-group m-right" style="display:none">
-                        <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
-                        <a class="botao-sm" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>   
+                    <div id="mais-fast-menu" class="mais-fast-menu">
+                        <div class="mais-fast-menu-buttons">
+                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
+                            <a class="botao-sm" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
+                        </div>
+                           
                     </div>
                     <i style="cursor:pointer; align-self:center" id="expand-mais-fast-menu" class="fa-solid fa-angle-left m-right"></i>
                     <div class="botao-group">
@@ -61,6 +64,7 @@ protege();
 
 
             <div class="filters-menu">
+                <h5 class="panel-title">Filtros</h5>
                 <div class="m-bottom"> 
                     <label>Período: </label>
                     <div class="ipt-group">
@@ -80,29 +84,33 @@ protege();
                         <div>
                             <input id="max" type="date">
                         </div>
-                    </div>
-                    
-                    
+                    </div>                               
+                </div>
 
-                </div>
                 <div class="m-bottom">
-                    <label>Marca: </label>
-                    <select id="marca">
-                        <option value="todos">Todos</option>
-                        <?php
-                            $produtos = mysql_fetchAll('SELECT DISTINCT marca FROM produtos');
-                            foreach($produtos as $produto){
-                                print "<option value='".$produto['marca']."'>".$produto['marca']."</option>";
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div class="m-bottom">
-                    <label>Categoria: </label>
-                    <select id="categoria">
-                        <option value="todos">Todos</option>
-                    </select>
-                </div>
+                        <label>Marca: </label>
+                        <div>
+                            <select id="marca">
+                                <option value="todos">Todos</option>
+                                <?php
+                                    $produtos = mysql_fetchAll('SELECT DISTINCT marca FROM produtos');
+                                    foreach($produtos as $produto){
+                                        print "<option value='".$produto['marca']."'>".$produto['marca']."</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>     
+                    </div>
+                    <div class="m-bottom">
+                        <label>Categoria: </label>
+                        <div>
+                            <select id="categoria">
+                                <option value="todos">Todos</option>
+                            </select>
+                        </div>                    
+                    </div>
+                
+                
 
 
                 <div>
@@ -162,9 +170,6 @@ include_once '../../includes/footer.php';
 ?>
 
 <script>
-    $(document).ready(function(){
-        $('#filters-menu').hide();
-    })
     var table = $('#produtosTable').DataTable({     
         responsive:{
             details: false
