@@ -46,11 +46,16 @@ protege();
                     <div id="mais-fast-menu" class="mais-fast-menu">
                         <div class="mais-fast-menu-buttons">
                             <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
+                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
+                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
+                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
+                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
+                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
                             <a class="botao-sm" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
                         </div>
                            
                     </div>
-                    <i style="cursor:pointer; align-self:center" id="expand-mais-fast-menu" class="fa-solid fa-angle-left m-right"></i>
+                    <i id="expand-mais-fast-menu" class="fa-solid fa-angle-left m-right"></i>
                     <div class="botao-group">
                         <a id="copy" class="botao-sm"><i class="fa fa-copy"></i></a>
                         <button class="botao-sm botao-theme04 respiro-x" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
@@ -170,6 +175,15 @@ include_once '../../includes/footer.php';
 ?>
 
 <script>
+    $(document).ready(function(){
+    })
+
+    function expandFastMenu(x) {
+        $('#mais-fast-menu').css('display','flex');
+    }
+    var x = window.matchMedia("(max-width: 730px)")
+    x.addListener(expandFastMenu); 
+
     var table = $('#produtosTable').DataTable({     
         responsive:{
             details: false
@@ -267,7 +281,6 @@ include_once '../../includes/footer.php';
         $('#mais-fast-menu').animate({width:'toggle'},350, function(){
             $("#expand-mais-fast-menu").toggleClass('fa-rotate-180');
         });
-        
     });
 
     function getSelecionados() {

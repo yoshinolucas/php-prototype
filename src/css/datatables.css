@@ -46,7 +46,7 @@ tr.selected > * {
 }
 
 .table01 thead th {
-    border-right: 1px solid #fff;
+    border-right: 1px solid var(--thead1BorderTh);
 }
 
 .table01 thead th:last-child {
@@ -54,8 +54,12 @@ tr.selected > * {
 }
 
 .table01 thead {
-    background: var(--primary01);
-    color: #fff
+    background: var(--thead1);
+    color: var(--blackOrWhite)
+}
+
+.table01 tbody {
+    color: var(--lettersDark);
 }
 
 .table01 tbody tr td {
@@ -68,14 +72,14 @@ tr.selected > * {
 }
 
 .table01 tr.odd {
-    background-color: #fff !important;
+    background-color: var(--tbody1) !important;
 }
 
 .table01 tr.odd:hover {
-    background-color: rgb(245, 245, 245) !important;
+    background-color: var(--tbody1Hover) !important;
 }
 .table01 tr.even {
-    background-color: #f0f0f0;
+    background-color: var(--tbody2);
 }
 .table01 tr.even:hover {
     background-color: #e7e7e7;
@@ -105,27 +109,24 @@ tr.selected > * {
     border-right: none
 }
 
+.table02 tbody {
+    color: var(--lettersDark);
+}
+
 
 .table02 tbody tr td:last-child {
     border-right: none;
 }
 
 .table02 tr.odd {
-    background-color: #fff !important;
+    background-color: var(--tbody1) !important;
 }
 .table02 tr.even {
-    background-color: #ececec;
-}
-
-.table02 tr.odd {
-    background-color: #fff !important;
+    background-color: var(--tbody2);
 }
 
 .table02 tr.odd:hover {
     background-color: rgb(245, 245, 245) !important;
-}
-.table02 tr.even {
-    background-color: #f0f0f0;
 }
 .table02 tr.even:hover {
     background-color: #e7e7e7;

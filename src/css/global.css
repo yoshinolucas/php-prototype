@@ -1,4 +1,24 @@
 :root {
+    --background: rgb(224, 241, 233);
+    --header:rgb(82, 116, 99);
+    --opensidebar: rgb(83, 131, 107);
+    --opensidebarHover:rgb(61, 107, 85);
+    --sidebar: rgb(94, 148, 122);
+    --sidebar-menu:rgb(82, 121, 101);
+    --sidebar-menuHover:rgb(46, 73, 59);
+    --sidebar-submenu:rgb(66, 97, 81);
+    --sidebar-submenuHover:rgb(43, 63, 53);
+    --letters: rgb(22, 117, 106);
+    --lettersDark: #444;
+    --thead1:rgb(31, 163, 146);
+    --tbody1: #fff;
+    --tbody1Hover:rgb(245, 245, 245);
+    --tbody2: #ececec;
+    --panel:rgb(248, 248, 248);
+    --border: rgb(31, 143, 130);
+    --blackOrWhite: #fff;
+    --thead1BorderTh: #fff;
+    --primaryOrWhite: rgb(31, 163, 146);
     --primary01:rgb(31, 163, 146);
     --primary01Hover:rgb(25, 129, 115);
 
@@ -8,8 +28,11 @@
     --primary03: rgb(31, 143, 130);
     --primary03Hover: rgb(15, 92, 84);
 
-    --primary04: rgb(18, 88, 80);
-    --primary04Hover: rgb(8, 48, 44);
+    --primary04: rgb(25, 109, 91);
+    --primary04Hover: rgb(15, 63, 53);
+
+    --primary05: rgb(18, 88, 80);
+    --primary05Hover: rgb(8, 48, 44);
 
     --info: rgb(54, 184, 166);
     --infoHover: rgb(44, 151, 137);
@@ -19,6 +42,56 @@
     
     --danger: rgb(218, 65, 86);
     --dangerHover: rgb(184, 53, 71);
+
+    --shadow01:2px 2px 2px 1px rgba(206, 206, 206, 0.2);
+    --shadow02:2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+[data-theme="dark"] {
+    --background: rgb(0, 0, 0);
+    --header:rgb(45, 65, 65);
+    --opensidebar: rgb(46, 75, 75);
+    --opensidebarHover:rgb(35, 63, 62);
+    --sidebar: rgb(41, 88, 86);
+    --sidebar-menu:rgb(49, 73, 73);
+    --sidebar-menuHover:rgb(26, 43, 41);
+    --sidebar-submenu:rgb(34, 51, 47);
+    --sidebar-submenuHover:rgb(18, 27, 25);
+    --letters: #fff;
+    --lettersDark: #fff;
+    --border: #fff;
+    --blackOrWhite:#fff;
+    --primaryOrWhite: #fff;
+    --thead1: rgb(15, 61, 63);
+    --thead1BorderTh: rgb(24, 129, 115); 
+    --tbody1: rgb(17, 88, 97);
+    --tbody2: rgb(15, 65, 77);
+    --panel: #444;
+
+    --primary01:rgb(24, 129, 115);
+    --primary01Hover:rgb(18, 97, 86);
+
+    --primary02: rgb(184, 218, 214);
+    --primary02Hover: rgb(133, 172, 168);
+
+    --primary03: rgb(22, 117, 106);
+    --primary03Hover: rgb(8, 58, 53);
+
+    --primary04: rgb(16, 77, 63);
+    --primary04Hover: rgb(10, 43, 36);
+
+    --primary05: rgb(12, 56, 51);
+    --primary05Hover: rgb(4, 27, 25);
+
+    --info: rgb(44, 156, 141);
+    --infoHover: rgb(33, 117, 106);
+
+    --warning: rgb(190, 134, 69);
+    --warningHover: rgb(161, 113, 58);
+    
+    --danger: rgb(184, 55, 72);
+    --dangerHover: rgb(139, 39, 52);
 
     --shadow01:2px 2px 2px 1px rgba(206, 206, 206, 0.2);
     --shadow02:2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -38,7 +111,7 @@ html, body {
 }
 
 body {
-    background-color:  rgb(224, 241, 233) !important;
+    background-color: var(--background) !important;
 }
 
 input[type="text"]{
@@ -64,9 +137,17 @@ select[readonly]
     background-color: rgb(231, 231, 231);
 }
 
+label{
+    color: var(--letters) !important;
+}
+
+span{
+    color: var(--letters) !important;
+}
+
 
 .panel {
-    background: rgb(248, 248, 248);
+    background: var(--panel);
     margin-top: 24px;
     margin-right: 24px;
     margin-bottom: 12px;
@@ -86,14 +167,14 @@ select[readonly]
     justify-content: space-between;
     align-items: center;
     padding-bottom: 24px;
-    border-bottom: 1px solid rgb(31, 163, 146)
+    border-bottom: 1px solid var(--border);
 }
 
 .panel-body {
     margin: 4px;
 }
 .panel-title {
-    color:rgb(31, 163, 146);
+    color:var(--letters);
     margin-bottom:0;
 }
 
@@ -113,7 +194,7 @@ select[readonly]
 
 .criar form label {
     width: 10%;
-    color: rgb(31, 163, 146);
+    color: var(--primary03);
 }
 
 .criar form .checkbox {
@@ -126,7 +207,7 @@ select[readonly]
 
 .create-success {
     margin: 12px 7px;
-    background: rgb(32, 173, 155);
+    background: var(--primary01);
     padding: 20px;
     text-align: center;
     border-radius: 4px;
@@ -225,7 +306,7 @@ input[type="date"]{
 }
 
 .filters-menu {
-    display: block;
+    display: none;
     width: 50%;
     border: 1px solid var(--primary01);
     padding: 12px;
@@ -246,11 +327,12 @@ input[type="date"]{
 }
 
 .mais-fast-menu {
-    display:none
+    display:none;
 }
 
 .mais-fast-menu-buttons {
-    display:flex
+    display:flex;
+    margin-right:8px;
 }
 
 .mais-fast-menu-buttons a{
@@ -268,6 +350,9 @@ input[type="date"]{
     align-items:center;
 }
 
+#expand-mais-fast-menu {
+    cursor:pointer; align-self:center; color: var(--letters)
+}
 
 
 

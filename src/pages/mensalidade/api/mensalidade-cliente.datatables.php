@@ -1,17 +1,16 @@
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT']."/includes/config.php";
 
+// Reading value
 $draw = $_POST['draw'];
 $row = $_POST['start'];
-$rowperpage = $_POST['length'];
-$columnIndex = $_POST['order'][0]['column'];
-$columnName = $_POST['columns'][$columnIndex]['data'];
-$columnSortOrder = $_POST['order'][0]['dir'];
-$searchValue = $_POST['search']['value']; 
+$rowperpage = $_POST['length']; // Rows display per page
+$columnIndex = $_POST['order'][0]['column']; // Column index
+$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
+$columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
+$searchValue = $_POST['search']['value']; // Search value
 
 $searchArray = array();
-
-$cols = ['id','name','marca','unidades','atualizado_em','active','criado_em'];
 
 // Search
 $searchQuery = " ";
@@ -26,32 +25,43 @@ if($searchValue != ''){
 
 if($_POST['min'] != '' AND $_POST['max'] != '') $searchQuery .= "AND criado_em ".$_POST['min']." between ".$_POST['max']." ";
 if($_POST['marca'] != 'todos') $searchQuery .= "AND marca = '".$_POST['marca']."' ";
-
-$records = mysql_fetchRow('SELECT COUNT(*) AS allcount FROM produtos');
+// Total number of records without filtering
+$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM produtos ");
+$stmt->execute();
+$records = $stmt->fetch();
 $totalRecords = $records['allcount'];
 
-$records = mysql_fetchRow("SELECT COUNT(*) AS allcount FROM produtos WHERE 1 ".$searchQuery);
+// Total number of records with filtering
+$stmt = $dbh->prepare("SELECT COUNT(*) AS allcount FROM produtos WHERE 1 ".$searchQuery);
+$stmt->execute($searchArray);
+$records = $stmt->fetch();
 $totalRecordwithFilter = $records['allcount'];
 
-$values = [];
-foreach ($searchArray as $key=>$search) {
-   $values[':'.$key] = $search;
-}
-$values[':limit'] = (int)$row;
-$values[':offset'] = (int)$rowperpage;
+// Fetch records
+$stmt = $dbh->prepare("SELECT * FROM produtos WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
 
-$usersRecords = mysql_fetchAll("SELECT ".implode(',',$cols)." FROM produtos WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset", $values);
+// Bind values
+foreach ($searchArray as $key=>$search) {
+   $stmt->bindValue(':'.$key, $search,PDO::PARAM_STR);
+}
+
+$stmt->bindValue(':limit', (int)$row, PDO::PARAM_INT);
+$stmt->bindValue(':offset', (int)$rowperpage, PDO::PARAM_INT);
+$stmt->execute();
+$usersRecords = $stmt->fetchAll();
+
+$data = array();
 
 foreach ($usersRecords as $row) {
    $data[] = array(
       "DT_RowId"=>$row['id'],
       "select"=>"",
-      "active"=>$row['active'] == 1 ? "<i class='fa fa-check'></i>" : "",
       "id"=>$row['id'],
       "name"=>$row['name'],
       "marca"=>$row['marca'],
       "unidades"=>$row['unidades'],
       "atualizado_em"=>$row['atualizado_em'],
+      "active"=>$row['active'] == 1 ? "<i class='fa fa-check'></i>" : "",
       "criado_em"=>$row['criado_em'],
    );
 }
