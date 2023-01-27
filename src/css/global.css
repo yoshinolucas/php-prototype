@@ -1,4 +1,6 @@
 :root {
+    --especial: hsl(165, 100%, 59%);
+    --checked: hsl(212, 100%, 59%);
     --background: rgb(224, 241, 233);
     --header:rgb(82, 116, 99);
     --opensidebar: rgb(83, 131, 107);
@@ -12,11 +14,13 @@
     --lettersDark: #444;
     --thead1:rgb(31, 163, 146);
     --tbody1: #fff;
+    --tbodySelected: rgb(22, 117, 106);
     --tbody1Hover:rgb(245, 245, 245);
     --tbody2: #ececec;
     --panel:rgb(248, 248, 248);
     --border: rgb(31, 143, 130);
-    --blackOrWhite: #fff;
+    --whiteOrBlack: #fff;
+    --blackOrWhite: rgb(0, 0, 0);
     --thead1BorderTh: #fff;
     --primaryOrWhite: rgb(31, 163, 146);
     --primary01:rgb(31, 163, 146);
@@ -37,7 +41,7 @@
     --info: rgb(54, 184, 166);
     --infoHover: rgb(44, 151, 137);
 
-    --warning: rgb(226, 160, 84);
+    --warning: rgba(252, 151, 0, 0.986);
     --warningHover: rgb(204, 143, 73);
     
     --danger: rgb(218, 65, 86);
@@ -49,24 +53,29 @@
 }
 
 [data-theme="dark"] {
+    --especial: hsl(165, 100%, 59%);
+    --checked: hsl(212, 100%, 59%);
     --background: rgb(0, 0, 0);
-    --header:rgb(45, 65, 65);
-    --opensidebar: rgb(46, 75, 75);
-    --opensidebarHover:rgb(35, 63, 62);
-    --sidebar: rgb(41, 88, 86);
-    --sidebar-menu:rgb(49, 73, 73);
-    --sidebar-menuHover:rgb(26, 43, 41);
-    --sidebar-submenu:rgb(34, 51, 47);
+    --header:rgb(43, 43, 43);
+    --opensidebar: #444;
+    --opensidebarHover: rgb(16, 146, 129);
+    --sidebar: rgb(43, 43, 43);
+    --sidebar-menu:rgb(16, 146, 129);
+    --sidebar-menuHover:rgb(12, 105, 93);
+    --sidebar-submenu:rgb(10, 83, 74);
     --sidebar-submenuHover:rgb(18, 27, 25);
     --letters: #fff;
     --lettersDark: #fff;
     --border: #fff;
     --blackOrWhite:#fff;
+    --whiteOrBlack: black;
     --primaryOrWhite: #fff;
-    --thead1: rgb(15, 61, 63);
-    --thead1BorderTh: rgb(24, 129, 115); 
-    --tbody1: rgb(17, 88, 97);
-    --tbody2: rgb(15, 65, 77);
+    --thead1: rgb(16, 146, 129);
+    --tbodySelected: hsl(207, 82%, 28%);
+    --tbody1: rgb(46, 46, 46);
+    --tbody1Hover: rgb(41, 41, 41);
+    --tbody2: rgb(32, 32, 32);
+    --tbody2Hover: rgb(15, 15, 15);
     --panel: #444;
 
     --primary01:rgb(24, 129, 115);
@@ -87,14 +96,16 @@
     --info: rgb(44, 156, 141);
     --infoHover: rgb(33, 117, 106);
 
-    --warning: rgb(190, 134, 69);
-    --warningHover: rgb(161, 113, 58);
+    --warning:  rgba(252, 151, 0, 0.986);
+
+    --warningHover: rgb(189, 110, 20);
     
     --danger: rgb(184, 55, 72);
     --dangerHover: rgb(139, 39, 52);
 
     --shadow01:2px 2px 2px 1px rgba(206, 206, 206, 0.2);
     --shadow02:2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    --shadow03:0px 0px 2px 0px rgba(0, 0, 0, 0.2);
 
 }
 
@@ -114,14 +125,71 @@ body {
     background-color: var(--background) !important;
 }
 
+h1 {
+    color:var(--letters);
+}
+
+h2 {
+    color:var(--letters);
+}
+
+h3 {
+    color:var(--letters);
+}
+
+h4 {
+    color:var(--letters);
+}
+
+h5 {
+    color:var(--letters);
+}
+
 input[type="text"]{
     border: none;
     box-shadow: 2px 2px 2px 1px var(--shadow02)
 }
 
+.checkbox{
+    background-color: #fff !important;
+    width:14px;
+    height:14px;
+    appearance: none;
+    border-radius: 2px;
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    background-color: #ececec !important;
+}
+
+.checkbox:checked {
+    border: 1px solid #fff;
+    background-color: var(--tbodySelected) !important;
+}
+
+.checkbox:after{
+    content: "";
+    position: absolute;
+    display:none;
+}
+
+.checkbox:checked:after {
+    display:block;
+}
+
+.checkbox:after {
+    content: "✓";
+    font-family: 'FontAwesome';
+    font-size: 15px !important;
+    color: #fff;
+    margin-top: -5px;
+}
+
 input[type="number"]{
     border: none;
-    box-shadow: 2px 2px 2px 1px var(--shadow02)
+    box-shadow: 2px 2px 2px 1px var(--shadow02);
 }
 
 input[readonly] {
@@ -176,8 +244,8 @@ span{
 .panel-title {
     color:var(--letters);
     margin-bottom:0;
+    font-size: 20px;
 }
-
 
 .criar form div {
     display: flex;
@@ -269,7 +337,7 @@ span{
     font-family: 'FontAwesome';
     content: '\f002';
     right: 13px;
-    top:8px;
+    top:10px;
 }
 
 select{
@@ -279,11 +347,12 @@ select{
     width: 150px;
 }
 
-input[type="search"]{
-    border: .2px solid var(--primary01);
+
+.search{
+    border: .5px solid var(--primary01) !important;
     border-radius: 24px;
     height: 35px;
-    padding: 0 12px;
+    padding: 0 12px; 
 }
 
 input[type="date"]{
@@ -311,11 +380,20 @@ input[type="date"]{
     border: 1px solid var(--primary01);
     padding: 12px;
     margin: 7px;
-    box-shadow: var(--shadow01);
 }
 
 .filters-menu label{
     color: var(--primary03)
+}
+
+#periodo {
+    display:flex;
+    align-items:center;
+}
+
+#periodo div {
+    display: flex;
+    align-items: center;
 }
 
 .filters-menu input{
@@ -326,33 +404,83 @@ input[type="date"]{
     display: flex;
 }
 
-.mais-fast-menu {
-    display:none;
-}
-
-.mais-fast-menu-buttons {
-    display:flex;
-    margin-right:8px;
-}
-
-.mais-fast-menu-buttons a{
-    font-size: 18px !important;
-    padding: 12px 14px !important;
-}
 
 .fast-menu .botao-group a, .fast-menu .botao-group button{
+    width: 40px;
+    height: 40px;
     font-size: 18px;
-    padding: 6px 12px;
 }
 
-.ipt-group {
-    display:flex; 
-    align-items:center;
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: none;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-#expand-mais-fast-menu {
-    cursor:pointer; align-self:center; color: var(--letters)
+.modal-content {
+    height: 200px;
+    border-radius: 10px;
+    background-color: #ececec;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;  /* Could be more or less, depending on screen size */
 }
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 20%;
+    align-items: center;
+    border-bottom: 1px solid var(--primary03);
+}
+
+.modal-body {
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    margin: 5px 0;
+    padding: 20px;
+}
+
+.modal-msg {
+    color: var(--primary01);
+    font-size: 16px;
+}
+
+.modal-footer {
+    text-align: end;
+    width: 100%;
+    height: 30%;
+}
+  
+.modal-close {
+    color: var(--primary01) !important;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-title {
+    color: var(--primary01);
+    font-size: 18px;
+}
+
 
 
 

@@ -26,7 +26,7 @@
 }
 
 tr.selected > * {
-    box-shadow: inset 0 0 0 9999px var(--primary03) !important;
+    box-shadow: inset 0 0 0 9999px var(--tbodySelected) !important;
 }
  
 .selected .select-checkbox:after {
@@ -35,18 +35,21 @@ tr.selected > * {
     margin-top: -11px !important;
 }
 
+.selecionado {
+    background: var(--tbodySelected) !important;
+}
 .dataTables_wrapper {
     margin-top: 10px;
 }
 
 .table01 {
     margin-top: 10px;
-    border: 1px solid var(--primary01);
+    border: 1px solid var(--primaryOrWhite);
     border-radius: 4px;
 }
 
 .table01 thead th {
-    border-right: 1px solid var(--thead1BorderTh);
+    border-right: 1px solid #fff;
 }
 
 .table01 thead th:last-child {
@@ -55,7 +58,7 @@ tr.selected > * {
 
 .table01 thead {
     background: var(--thead1);
-    color: var(--blackOrWhite)
+    color: #fff;
 }
 
 .table01 tbody {
@@ -63,8 +66,8 @@ tr.selected > * {
 }
 
 .table01 tbody tr td {
-    border-right: .4px solid var(--primary01);
-    border-bottom: .4px solid var(--primary01);
+    border-right: .4px solid var(--primaryOrWhite);
+    border-bottom: .4px solid var(--primaryOrWhite);
 }
 
 .table01 tbody tr td:last-child {
@@ -72,17 +75,17 @@ tr.selected > * {
 }
 
 .table01 tr.odd {
-    background-color: var(--tbody1) !important;
+    background-color: var(--tbody1);
 }
 
 .table01 tr.odd:hover {
-    background-color: var(--tbody1Hover) !important;
+    background-color: var(--tbody1Hover);
 }
 .table01 tr.even {
     background-color: var(--tbody2);
 }
 .table01 tr.even:hover {
-    background-color: #e7e7e7;
+    background-color: var(--tbody2Hover);
 }
 
 .table02 {
@@ -136,6 +139,14 @@ tr.selected > * {
     margin: 0 7px;
     display: flex;
     justify-content: space-between;
+}
+
+table.dataTable>tbody>tr>td.select-checkbox:before, table.dataTable>tbody>tr>th.select-checkbox:before {
+    border: 1px solid var(--blackOrWhite) !important;
+}
+
+table.dataTable>tbody>tr.selected>td.select-checkbox:after, table.dataTable>tbody>tr.selected>th.select-checkbox:after {
+    text-shadow: none !important;
 }
 
 

@@ -22,29 +22,20 @@
         border-right: none;
     }
 
-
-    .filters-menu div{
-        display: block;
-    }
-
-    .filters-menu label{
-        width: 30%;
-    }
-
-    .filters-menu input{
-        width: 100%;
-    }
-
-    .filters-menu select{
-        width: 100%;
-    }
-
 }
 
 @media screen and (max-width: 570px) {
     .panel-header {
         height: 100%;
         display: block;
+    }
+
+    .filters {
+        width: 100%;
+    }
+
+    .search {
+        width: 140px !important;
     }
 
     input[type="search"]{
@@ -78,12 +69,25 @@
     .table02 thead tr th:nth-child(4) {
         border-right: none;
     }
-
-    
 }
 
 
+
 @media screen and (max-width: 730px) {
+    .filters-menu div{
+        display: block !important;
+    }
+
+    .filters-menu label{
+        width: 30%;
+    }
+    .filters-menu input[type='text']{
+        width: 100%;
+    }
+
+    .filters-menu select{
+        width: 100%;
+    }
     .table01 tbody tr td:nth-child(5) {
         border-right: none;
     }
@@ -96,28 +100,29 @@
     .table02 thead tr th:nth-child(5) {
         border-right: none;
     }
+    
+}
 
-    .fast-menu {
-        display: block
+@media screen and (max-width: 800px) {
+    .table-header {
+        display: block;
+        flex-direction: column;
     }
-
-    #expand-mais-fast-menu {
-        display:none
+    .fast-menu{
+        margin-top: 6px;
     }
-
-    .mais-fast-menu-buttons {
-        margin-bottom: 4px
-    }
-
 
 }
 
-
-
 @media screen and (max-width: 920px) {
+    .filters-menu input[type="date"] {
+        width: 112px !important;
+    }
+    .modal-content {
+        width: 60% !important;
+    }
     .filters-menu {
         width: 100%;
-        margin: 12px 0;
     }
 
     .filters-menu label{
@@ -131,18 +136,9 @@
     .filters-menu select{
         width: 100%;
     }
-
 }
+
 @media screen and (max-width:980px) {
-    .table-header {
-        display: block;
-        flex-direction: column;
-    }
-
-    .fast-menu {
-        margin-top:10px;
-    }
-
     .criar form input {
         width: 70%;
     }
@@ -152,10 +148,26 @@
     }
 }
 
+@media screen and (max-width:1080px) {
+    #periodo {
+        display: block;
+    }
+    #periodo div {
+        margin-top: 4px
+    }
+}
+
 
 @media screen and (max-width: 1300px) {
     .ipt-group {
         display:block;
+    }
+    .filters-menu input[type="date"] {
+        width: 125px !important;
+    }
+    .filters-menu {
+        width: 60%;
+        margin: 12px 0;
     }
 }
 

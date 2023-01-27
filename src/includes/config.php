@@ -70,6 +70,14 @@ function mysql_fetchRow($query, $values = Array()){
 	return $result;
 }
 
+function mysql_fetchCount($query, $execute=NULL){
+	global $dbh;
+	$stmt = $dbh->prepare($query);
+	$stmt->execute($execute);
+	$records = $stmt->fetch();
+	return $records;
+}
+
 function mysql_fetch($query, $values = Array()){
     global $dbh;
     $stmt = $dbh->prepare($query);

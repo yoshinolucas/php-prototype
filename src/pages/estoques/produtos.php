@@ -36,29 +36,16 @@ protege();
                         <i class="fa-solid fa-filter"></i>
                     </button>
                     <div class="input-icon">
-                        <input type="search" id="search" placeholder="Pesquisar...">
+                        <input type="text" class="search" id="search" placeholder="Pesquisar...">
                     </div>
                     
                 </div>          
                 
 
                 <div class="fast-menu">
-                    <div id="mais-fast-menu" class="mais-fast-menu">
-                        <div class="mais-fast-menu-buttons">
-                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
-                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
-                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
-                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
-                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-pdf"></i></a>  
-                            <a class="botao-sm m-right" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
-                            <a class="botao-sm" href="/pages/estoques/api/excel-produtos.php"><i class="fa-solid fa-file-lines"></i></a>
-                        </div>
-                           
-                    </div>
-                    <i id="expand-mais-fast-menu" class="fa-solid fa-angle-left m-right"></i>
                     <div class="botao-group">
                         <a id="copy" class="botao-sm"><i class="fa fa-copy"></i></a>
-                        <button class="botao-sm botao-theme04 respiro-x" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></button>
+                        <button id="open-modal" class="botao-sm botao-theme04 respiro-x"><i class="fa fa-trash"></i></button>
                         <a class="botao-sm botao-theme01" href="/pages/estoques/produtoedit.php?id=0"><i class="fa fa-add"></i></a>
                         <button id="refresh" class="botao-sm m-left"><i class="fa fa-refresh"></i></button>
 
@@ -69,10 +56,10 @@ protege();
 
 
             <div class="filters-menu">
-                <h5 class="panel-title">Filtros</h5>
-                <div class="m-bottom"> 
+                <h3>Filtros</h3>
+                <div class="respiro-y"> 
                     <label>Período: </label>
-                    <div class="ipt-group">
+                    <div id="periodo">
                         <select id="per">
                             <option value="todos">Todos</option>
                             <option value="hoje">Hoje</option>
@@ -81,14 +68,16 @@ protege();
                             <option value="mes">Últimos 30 dias</option>
                             <option value="meio-ano">Últimos 180 dias</option>
                         </select>
-                        <span>&nbsp;Ou&nbsp;</span>
                         <div>
-                            <input id="min" type="date">
-                        </div>
-                        <span>&nbsp;á&nbsp;</span>
-                        <div>
-                            <input id="max" type="date">
-                        </div>
+                            <span>&nbsp;Ou&nbsp;</span>
+                            <div>
+                                <input id="min" type="date">
+                            </div>
+                            <span>&nbsp;á&nbsp;</span>
+                            <div>
+                                <input id="max" type="date">
+                            </div>
+                        </div>           
                     </div>                               
                 </div>
 
@@ -133,7 +122,7 @@ protege();
                 <thead>
                     <tr>
                         <th style="text-align:center">
-                            <input id="select-all" type="checkbox">
+                            <input id="select-all" class="checkbox" type="checkbox">
                         </th>
                         <th>Id</th>
                         <th>Nome</th>
@@ -150,23 +139,25 @@ protege();
         </div>
     </div>
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="modal" id="modal-remove">
+        <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Remover produtos</h5>
+                <span class="modal-close" id="modal-close">&times;</span>
             </div>
             <div class="modal-body">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Certeza que quer excluir os<span></span> itens selecionados?</h1>
-                <button type="button" class="remove-escrito">Excluir</button>
-                <button type="button" class="cancelar" data-bs-dismiss="modal">Cancelar</button>
+                <h5 class="modal-msg"></h5>
             </div>
+            <div class="modal-footer">
+                <button class="botao-sm botao-theme03" id="modal-close-cancel">Cancelar</button>
+                <button class="botao-sm botao-theme04" id="modal-submit">Excluir</button>
             </div>
         </div>
+
     </div>
+
+
+    
 </section>
 
 
@@ -175,14 +166,6 @@ include_once '../../includes/footer.php';
 ?>
 
 <script>
-    $(document).ready(function(){
-    })
-
-    function expandFastMenu(x) {
-        $('#mais-fast-menu').css('display','flex');
-    }
-    var x = window.matchMedia("(max-width: 730px)")
-    x.addListener(expandFastMenu); 
 
     var table = $('#produtosTable').DataTable({     
         responsive:{
@@ -195,7 +178,7 @@ include_once '../../includes/footer.php';
         ajax: {
             url:'api/produtos.datatables.php',
             type: 'POST',
-            data: function( d ) {
+            data: ( d ) => {
                 d.per = $('#per').val();
                 d.marca = $('#marca').val();
                 d.categoria = $('#categoria').val();
@@ -238,8 +221,8 @@ include_once '../../includes/footer.php';
         if(this.checked) {$('#produtosTable tbody tr').addClass('selected') }
         else {($('#produtosTable tbody tr').removeClass('selected'))}
     })
-
-    $('#copy').on('click',function(){
+    
+    $('#copy').on('click',() => {
         selecionado = getSelecionados();
         if(selecionado.length == 1) {
             location.href="/pages/estoques/produtoedit.php?id="+selecionado[0]+"&copy=1";
@@ -248,39 +231,49 @@ include_once '../../includes/footer.php';
         }
     });
 
-    $('#filters').on('click', function(){
+    $('#produtosTable').on('click','tbody tr td:first-child', function() {
+        var linha = $(this).parent()
+        if(linha.hasClass('selected')){
+            linha.removeClass('selected');
+        } else {
+            linha.addClass('selected');
+        }
+        var selecionados = getSelecionados();
+        if(selecionados.length==10) {
+            $('#select-all').prop('checked',true);
+        } else {
+            $('#select-all').prop('checked',false);
+        }
+    })
+
+    $('#filters').on('click', () => {
         $('.filters-menu').slideToggle();
     });
 
-    $('#filter-submit, #refresh').on('click', function(){
+    $('#filter-submit, #refresh').on('click', () => {
+        $('#select-all').prop('checked',false);
         table.draw();
     });
 
 
-    $('#min').on('click', function(){
+    $('#min').on('click', () => {
         $('#min').removeAttr('readonly');
         $('#max').removeAttr('readonly');
         $('#per').attr('readonly', 'true');
     });
 
-    $('#per').on('click', function(){
+    $('#per').on('click', () => {
         $('#per').removeAttr('readonly');
         $('#min').attr('readonly', 'true');
         $('#max').attr('readonly', 'true');
     })
 
-    $('#filter-clear').on('click', function(){
+    $('#filter-clear').on('click', () => {
         $('#per').val('todos');
         $('#min').val('');
         $('#max').val('todos');
         $('#marca').val('todos');
         $('#categoria').val('todos');
-    });
-
-    $('#expand-mais-fast-menu').on('click',function(){
-        $('#mais-fast-menu').animate({width:'toggle'},350, function(){
-            $("#expand-mais-fast-menu").toggleClass('fa-rotate-180');
-        });
     });
 
     function getSelecionados() {
@@ -292,17 +285,41 @@ include_once '../../includes/footer.php';
         return selecionados;
     }
 
-    $('.remove-escrito').on('click',function(){
+    function dropModal() {
+        $('.modal-msg').empty()
+        modal.css('display', 'none') 
+    }
+
+    var modal = $('#modal-remove');
+    $('#open-modal').on('click', () => { 
+        if(getSelecionados().length==0) {
+            alert('Escolha pelo menos 1 produto');
+        } else {
+            modal.css('display', 'block')
+            var msg = 'Deseja mesmo remover ' + getSelecionados().length + ' produto(s)?';
+            $('.modal-msg').append(document.createTextNode(msg));
+        }
+    });
+
+    $("#modal-close, #modal-close-cancel").on('click', () => { 
+        dropModal() 
+    })
+    window.onclick = (event) => {
+        if (event.target == modal[0]) {
+            dropModal()
+        }
+    }
+
+    $('#modal-submit').on('click',()=>{
         $.ajax({
             url:'api/remover-produtos.php',
             type: 'POST',
             data: {
                 ids: JSON.stringify(getSelecionados())
             }
-        }).done(function(res){
-            location.reload();
+        }).done((res) => {
+            table.draw();
+            dropModal();
         })
     });
-
-
 </script>

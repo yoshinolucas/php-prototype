@@ -41,6 +41,13 @@ protege();
                     <li><a>Escritório</a></li>
                 </ul>
             </li>
+            <li class="sub-menu"><a><i class="fa-solid fa-computer"></i>
+            Sistemas<div style="float:right;margin:5px 5px 0 0" class='fa fa-caret-down right'></div></a>
+                <ul>
+                    <li><a href="/pages/sistemas/restaurantes/home.php">Restaurantes</a></li>
+                    <li><a>Escritório</a></li>
+                </ul>
+            </li>
             <li><a><i class="fa-solid fa-database"></i>Database</a></li>
         </ul>
     </nav>
@@ -50,34 +57,40 @@ protege();
     </div>
 </div>
 <div class="sidebar-compact">
-    <button class="openbtn" onclick="openSidebar()">&#9776;</button>
 </div>
+<button class="openbtn" onclick="openSidebar()">&#9776;</button>
 
 <script>
-    function sleep (time) {
+    var sidebarMedia = window.matchMedia("(max-width: 630px)");
+
+    function sleep(time){
         return new Promise((resolve) => setTimeout(resolve, time));
     }
+
     $('.sub-menu ul').hide();
-    $(".sub-menu a").click(function () {
-        $(this).parent(".sub-menu").children("ul").slideToggle("100");
-        $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+    $('.sub-menu a').click(function () {
+        $(this).parent('.sub-menu').children('ul').slideToggle('100');
+        $(this).find('.right').toggleClass('fa-caret-up fa-caret-down');
     });
+
+
     const openSidebar = () => {
-        document.getElementById("sidebar").style.width = "200px";
-        document.getElementById("panel").style.marginLeft = "224px";
-        document.getElementById("header").style.marginLeft = "199px";
-        sleep
-        sleep(300).then(()=>{
-            table.draw();
-        }) 
-    };
+        $('#sidebar').css('width', '200px');
+        $('#header').css('margin-left','199px');
+        if(!sidebarMedia.matches) {          
+            $('#panel').css('margin-left','224px');
+            sleep(300).then(()=>{
+                table.draw();
+            })  
+        } 
+    }; 
 
     const closeSidebar = () => {
-        document.getElementById("sidebar").style.width = "0";
-        document.getElementById("panel").style.marginLeft = "70px";
-        document.getElementById("header").style.marginLeft = "44px";
+        $('#sidebar').css('width','0');
+        $('#header').css('margin-left','44px');
+        $('#panel').css('margin-left','70px');
         sleep(300).then(()=>{
-            table.draw();
-        }) 
+                table.draw();
+        })        
     };
 </script>

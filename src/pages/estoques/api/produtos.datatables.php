@@ -11,12 +11,13 @@ $searchValue = $_POST['search']['value'];
 
 $searchArray = array();
 
+$table = 'produtos';
 $cols = ['id','name','marca','unidades','atualizado_em','active','criado_em'];
 
 // Search
 $searchQuery = " ";
 if($searchValue != ''){
-   $searchQuery .= "AND (name LIKE :name OR 
+   $searchQuery = " AND (name LIKE :name OR 
    marca LIKE :marca ) ";
    $searchArray = array( 
         'name'=>"%$searchValue%",  
@@ -27,22 +28,24 @@ if($searchValue != ''){
 if($_POST['min'] != '' AND $_POST['max'] != '') $searchQuery .= "AND criado_em ".$_POST['min']." between ".$_POST['max']." ";
 if($_POST['marca'] != 'todos') $searchQuery .= "AND marca = '".$_POST['marca']."' ";
 
-$records = mysql_fetchRow('SELECT COUNT(*) AS allcount FROM produtos');
+$records = mysql_fetchCount("SELECT COUNT(*) AS allcount FROM ".$table." ");
 $totalRecords = $records['allcount'];
 
-$records = mysql_fetchRow("SELECT COUNT(*) AS allcount FROM produtos WHERE 1 ".$searchQuery);
+$records = mysql_fetchCount("SELECT COUNT(*) AS allcount FROM ".$table." WHERE 1 ".$searchQuery, $searchArray);
 $totalRecordwithFilter = $records['allcount'];
 
 $values = [];
 foreach ($searchArray as $key=>$search) {
-   $values[':'.$key] = $search;
+   $keyFormat = ':'. $key;
+   $values[$keyFormat] = $search;
 }
 $values[':limit'] = (int)$row;
 $values[':offset'] = (int)$rowperpage;
 
-$usersRecords = mysql_fetchAll("SELECT ".implode(',',$cols)." FROM produtos WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset", $values);
+$records = mysql_fetchAll("SELECT ".implode(',',$cols)." FROM ".$table." WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset", $values);
 
-foreach ($usersRecords as $row) {
+$data = Array();
+foreach ($records as $row) {
    $data[] = array(
       "DT_RowId"=>$row['id'],
       "select"=>"",
