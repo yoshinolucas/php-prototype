@@ -7,9 +7,11 @@ include_once ROOT."/includes/sidebar.php";
 protege();
 ?>
 
-<section>
+<section class="restaurant">
     <div class="panel" id="panel">
-
+        <div class="panel-header">
+            <?php include_once ROOT."/includes/restaurant-nav.php"; ?>
+        </div>
     </div>
 </section>
 

@@ -118,7 +118,7 @@ protege();
             
 
             
-            <table class="table01" id="produtosTable" class="pt-2" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
+            <table class="table01" id="produtosTable" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
                 <thead>
                     <tr>
                         <th style="text-align:center">

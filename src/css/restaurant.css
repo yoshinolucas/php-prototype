@@ -1,0 +1,86 @@
+
+.restaurant .panel-header ul{
+    list-style-type: none;
+    display: flex;
+}
+
+.restaurant .panel-header li{
+    margin-right: 4px;
+}
+
+.restaurant .panel-header a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary01);
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.mesas {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mesas-lista {
+    display: block;
+}
+
+.mesas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom:4px
+}
+.mesas-body {
+    display:flex;
+    background: transparent;
+}
+
+.mesas-body ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    list-style: none;
+    border: 1px solid var(--primary01);
+    padding:5px;
+}
+
+.mesa {
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: grey;
+    width: 70px;
+    height: 40px;
+    border-radius: 6px;
+    box-shadow: var(--shadow02);
+    margin: 5px;
+}
+
+.disponivel {
+    background: var(--primary03);
+}
+
+.ocupado {
+    background: var(--danger);
+}
+
+.status-unselected {
+    background: grey !important;
+}
+
+
+
+.modal-status {
+
+}
+
+
+

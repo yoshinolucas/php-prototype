@@ -56,7 +56,7 @@ a.botao-sm {
     border:none;
     border-radius: 4px;
     min-width: 9%;
-    padding: 9px;
+    padding: 9px 5px;
     color: #444;
     transition: 0.3s;
 }
@@ -69,6 +69,8 @@ a.botao-sm:hover {
 .botao-sm:hover {
     background: rgb(202, 202, 202);
 }
+
+
 
 .botao-group {
     display:flex;

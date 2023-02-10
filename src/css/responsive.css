@@ -69,6 +69,8 @@
     .table02 thead tr th:nth-child(4) {
         border-right: none;
     }
+
+    
 }
 
 
@@ -100,7 +102,17 @@
     .table02 thead tr th:nth-child(5) {
         border-right: none;
     }
+
+    div.mesas ul{
+        grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    }
     
+}
+
+@media screen and (max-width: 780px) {
+    .mesas ul{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
+    }
 }
 
 @media screen and (max-width: 800px) {

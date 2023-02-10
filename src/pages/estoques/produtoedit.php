@@ -113,7 +113,7 @@ if($_POST['form'] == 'Y'){
                 <div>
                     <label>Ativo:</label>
                     <input 
-                    class="checkbox"
+                    class="checkbox-bg"
                     type="checkbox"
                     value="checked"
                     name="active">
