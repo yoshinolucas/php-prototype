@@ -102,8 +102,8 @@ if($_POST['status'] == 'Y') {
                     <table id="mesasOcupadas" class="table01" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
                         <thead>
                             <tr>
-                                <th>Mesa</th>
-                                <th>Tempo</th>
+                                <th style="padding:8px">Mesa</th>
+                                <th style="padding:8px">Tempo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -116,7 +116,7 @@ if($_POST['status'] == 'Y') {
                                     $minutos = $tempo_ocupado->format('%I');
                                     $segundos = $tempo_ocupado->format('%S');
                                     print "<tr>";
-                                    print "<td>".$mesa_ocupada['numero']."</td>";
+                                    print "<td style=\"padding:8px\";>".$mesa_ocupada['numero']."</td>";
                                     print "<td><div><span id='hour".$mesa_ocupada['numero']."'>".$horas."</span>:<span id='minute".$mesa_ocupada['numero']."'>".$minutos."</span>:<span id='second".$mesa_ocupada['numero']."'>".$segundos."</span></div></td>";
                                     print "</tr>";
                                 }
@@ -168,13 +168,13 @@ include_once ROOT."/includes/footer.php";
 
 <script>
 
-    var table = $('#mesasOcupadas').DataTable({
-        responsive:{
-            details: false
-        },
-        info: false,
-        lengthChange:false,
-    });
+    // var table = $('#mesasOcupadas').DataTable({
+    //     responsive:{
+    //         details: false
+    //     },
+    //     info: false,
+    //     lengthChange:false,
+    // });
 
    
     var mesa;
@@ -247,8 +247,8 @@ include_once ROOT."/includes/footer.php";
 
         if(hours[0]==0) hours = hours[1];
 
-        if(minutes>5 && minutes < 10) $("#mesasOcupadas tbody tr:nth-child("+i+")").css('background-color','rgba(252, 151, 0, 0.986)');
-        if(minutes>10) $("#mesasOcupadas tbody tr:nth-child("+i+")").css('background-color','rgb(218, 65, 86)');
+        if(hours > 1 || minutes >= 5 && minutes < 10) $("#mesasOcupadas tbody tr:nth-child("+i+")").css('background-color','rgba(252, 151, 0, 0.986)');
+        if(hours > 1 || minutes>10) $("#mesasOcupadas tbody tr:nth-child("+i+")").css('background-color','rgb(218, 65, 86)');
 
         $("#mesasOcupadas tbody tr:nth-child("+i+") td:nth-child(2) div span[id^='minute']")
         .text(returnData(minutes))

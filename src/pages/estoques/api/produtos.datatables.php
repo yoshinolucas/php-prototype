@@ -46,6 +46,9 @@ $records = mysql_fetchAll("SELECT ".implode(',',$cols)." FROM ".$table." WHERE 1
 
 $data = Array();
 foreach ($records as $row) {
+   $atualizado_em = '';
+   $criado_em = date_format(date_create($row['criado_em']),'d/m/Y H:i:s');
+   if (!empty($row['atualizado_em'])) $atualizado_em = date_format(date_create($row['atualizado_em']),'d/m/Y H:i:s');
    $data[] = array(
       "DT_RowId"=>$row['id'],
       "select"=>"",
@@ -54,8 +57,8 @@ foreach ($records as $row) {
       "name"=>$row['name'],
       "marca"=>$row['marca'],
       "unidades"=>$row['unidades'],
-      "atualizado_em"=>$row['atualizado_em'],
-      "criado_em"=>$row['criado_em'],
+      "atualizado_em"=>$atualizado_em,
+      "criado_em"=>$criado_em,
    );
 }
 

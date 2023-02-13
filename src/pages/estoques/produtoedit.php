@@ -22,10 +22,11 @@ if($_POST['form'] == 'Y'){
         if($_POST['unidades'] == '') $_POST['unidades'] = 0;
         $active = $_POST['active'] == 'checked' ? 1 : 0;
         if($id>0 and $copy!=1){
-            $run = mysql_fetch('UPDATE produtos SET name=:name,marca=:marca,unidades=:unidades,active=:active WHERE id=:id',
+            $run = mysql_fetch('UPDATE produtos SET name=:name,marca=:marca,unidades=:unidades,active=:active,atualizado_em=:atualizado_em WHERE id=:id',
             Array(':id'=>$id,':name'=>$_POST['name'],
             ':marca'=>$_POST['marca'],':unidades'=>$_POST['unidades'],
-            ':active'=>$active));
+            ':active'=>$active,
+            ':atualizado_em'=>date('Y-m-d H:i:s')));
         } else {
             $run = mysql_fetch('INSERT INTO produtos (name,marca,unidades,active) 
             VALUES (:name, :marca, :unidades, :active)',
@@ -39,7 +40,7 @@ if($_POST['form'] == 'Y'){
         if(!$run) {
             $error = "Erro interno. Por favor tentar novamente mais tarde.";
         } else {
-            $success = $id>0 AND $copy != 1 ?2:1;
+            $success = $id > 0 && $copy != 1 ? 2 : 1;
             print "<script>location.href='/pages/estoques/produtos.php?id=".$success."'</script>";
             exit;             
         }
@@ -113,7 +114,7 @@ if($_POST['form'] == 'Y'){
                 <div>
                     <label>Ativo:</label>
                     <input 
-                    class="checkbox-bg"
+                    class="checkbox"
                     type="checkbox"
                     value="checked"
                     name="active">

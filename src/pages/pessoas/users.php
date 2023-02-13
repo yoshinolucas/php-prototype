@@ -25,7 +25,7 @@ protege();
             <?php }?>
 
             <div class="input-icon">
-                <input type="search" id="search" placeholder="Pesquisar...">
+                <input class="search" id="search" placeholder="Pesquisar...">
             </div>
             <table id="usersTable" class="table02" align="center" border="0" cellpadding="2" cellspacing="1" width="99%">
                 <thead>
